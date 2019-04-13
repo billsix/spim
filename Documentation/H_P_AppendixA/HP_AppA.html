@@ -4504,7 +4504,7 @@ str:
         <h4>Move from lo</h4>
         <table class="inst" align="center" border="1" cellpadding="2" cellspacing="0" frame="box" rules="all" width="300">
                 <tr class="instformat">
-                        <th align="center" colspan="9">mfl rd</th>
+                        <th align="center" colspan="9">mflo rd</th>
                 </tr>
                 <tr class="instops">
                         <th align="center" width="40">0 </th>
@@ -4525,11 +4525,11 @@ str:
                         <td align="right">width (bits) </td>
                 </tr>
         </table>
-        <p>The pmultiply and divide unit produces its result in two additional registers,
+        <p>The multiply and divide unit produces its result in two additional registers,
         hi and lo. These instructions move values to and from these registers. The multiply,
-        divide, and remainder pse class="instformat"udoinstructions that make this unit appear to operate
-        on the general registers move the result after the computation finishes.</p>
-        <p>Move the hi (lo) regist class="instformat"er to register rd.<p>
+        divide, and remainder pseudoinstructions that make this unit appear to operate
+        on the general registers actually use these instructions to move the result after the operation finishes.</p>
+        <p>Move the hi (lo) register to register rd.<p>
         <h4>Move to hi</h4>
         <table class="inst" align="center" border="1" cellpadding="2" cellspacing="0" frame="box" rules="all" width="300">
                 <tr class="instformat">
@@ -4557,7 +4557,7 @@ str:
         <h4>Move to lo</h4>
         <table class="inst" align="center" border="1" cellpadding="2" cellspacing="0" frame="box" rules="all" width="300">
                 <tr class="instformat">
-                        <th align="center" colspan="9">mli rs</th>
+                        <th align="center" colspan="9">mtlo rs</th>
                 </tr>
                 <tr class="instops">
                         <th align="center" width="40">0 </th>
