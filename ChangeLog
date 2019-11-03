@@ -1,3 +1,8 @@
+2019-11-03  Larus  <larus@Jim-Macbook-Air>
+
+	* CPU/inst.cpp (inst_decode) [jashank.jeremy@unsw.edu.au]:
+	Miss second highest order bit in j instruction due to bad mask.
+
 2019-04-13  Larus  <larus@Jim-Macbook-Air>
 
 	* Documentation/H_P_AppendixA/HP_AppA.html [https://sourceforge.net/p/spimsimulator/bugs/88:

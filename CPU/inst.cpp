@@ -1554,7 +1554,7 @@ inst_decode (int32 val)
       return (mk_r_inst (val, i_opcode, BIN_FS(val), BIN_RT(val), BIN_FD(val), 0));
 
     case J_TYPE_INST:
-      return (mk_j_inst (val, i_opcode, val & 0x2ffffff));
+      return (mk_j_inst (val, i_opcode, val & 0x3ffffff));
 
 
     case NOARG_TYPE_INST:
