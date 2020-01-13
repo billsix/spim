@@ -46,7 +46,6 @@ TEMPLATE = app
 
 YACCSOURCES = ../CPU/parser.y
 LEXSOURCES  = ../CPU/scanner.l
-#CONFIG      += yacc_no_name_mangle
 
 SOURCES += main.cpp\
         spimview.cpp\
@@ -86,7 +85,7 @@ FORMS    += spimview.ui\
         breakpoint.ui
 
 
-INCLUDEPATH = ../CPU ../spim ../QtSpim
+INCLUDEPATH = ../CPU ../QtSpim
 
 
 RESOURCES = windows_images.qrc exception.qrc
