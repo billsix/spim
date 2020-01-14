@@ -121,8 +121,8 @@ HELP_COL_PROJ       = help/qtspim.qhcp
 buildhelpcollection.name    = Build help collection
 buildhelpcollection.input   = HELP_COL_PROJ
 buildhelpcollection.output  = help/${QMAKE_FILE_BASE}.qhc
-linux|macx:buildhelpcollection.commands= bash -c '\"pushd ${QMAKE_FILE_PATH}; qcollectiongenerator ${QMAKE_FILE_BASE}.qhcp; popd; $(MOVE) ${QMAKE_FILE_PATH}/${QMAKE_FILE_BASE}.qhc ${QMAKE_FILE_OUT};\"'
-win32:buildhelpcollection.commands= cmd -c '\"pushd ${QMAKE_FILE_PATH} & qcollectiongenerator ${QMAKE_FILE_BASE}.qhcp & popd & $(MOVE) ${QMAKE_FILE_PATH}\\${QMAKE_FILE_BASE}.qhc ${QMAKE_FILE_OUT}\"'
+linux|macx:buildhelpcollection.commands= bash -c '\"pushd ${QMAKE_FILE_PATH}; qcollectiongenerator ${QMAKE_FILE_BASE}.qhcp; popd; $(COPY) ${QMAKE_FILE_PATH}/${QMAKE_FILE_BASE}.qhc ${QMAKE_FILE_OUT};\"'
+win32:buildhelpcollection.commands= cmd -c '\"pushd ${QMAKE_FILE_PATH} & qcollectiongenerator ${QMAKE_FILE_BASE}.qhcp & popd & $(COPY) ${QMAKE_FILE_PATH}\\${QMAKE_FILE_BASE}.qhc ${QMAKE_FILE_OUT}\"'
 buildhelpcollection.CONFIG  = no_link recursive
 
 QMAKE_EXTRA_COMPILERS       += buildcompressedhelp buildhelpcollection
@@ -178,6 +178,7 @@ win32-g++ {
   #
   QMAKE_DEL_FILE = rm -f
   QMAKE_MOVE = mv
+  QMAKE_COPY = cp
 }
 
 linux-g++-32 {
