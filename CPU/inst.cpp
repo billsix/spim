@@ -1,7 +1,7 @@
 /* SPIM S20 MIPS simulator.
    Code to build assembly instructions and resolve symbolic labels.
 
-   Copyright (c) 1990-2010, James R. Larus.
+   Copyright (c) 1990-2020, James R. Larus.
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without modification,

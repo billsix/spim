@@ -1,3 +1,14 @@
+2020-01-14  Larus  <larus@Jim-Macbook-Air>
+
+	* Release 9.1.21
+	
+	* Update copyrights.
+
+	* Simplify MacOS packaging by moving file update to shell script
+	from Packages specification.
+
+	* Cleanup QMake process a bit.
+
 2020-01-13  Larus  <larus@Jim-Macbook-Air>
 
 	* QtSpim/QtSpim.pro:

@@ -3,7 +3,7 @@
 
 This directory contains SPIM--an assembly language MIPS32 simulator.
 
-SPIM is Copyright (c) 1990-2015, by James R. Larus.
+SPIM is Copyright (c) 1990-2020, by James R. Larus.
 All rights reserved.
 
 SPIM is distributed under a BSD license:
