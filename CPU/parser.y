@@ -498,7 +498,8 @@ static void yywarn (char*);
 
 static bool null_term;		/* => string terminate by \0 */
 
-static void (*store_op) (void*); /* Function to store items in an EXPR_LST */
+static void (*store_op) (int); /* Function to store items in an EXPR_LST */
+static void (*store_fp_op) (double*); /* Ditto FP_EXPR_LST */
 
 static label_list *this_line_labels = NULL; /* List of label for curent line */
 
@@ -2125,7 +2126,7 @@ ASM_DIRECTIVE:	Y_ALIAS_DIR	Y_REG	Y_REG
 
 
 	|	Y_BYTE_DIR
-		{store_op = (void(*)(void*))store_byte;}
+		{store_op = store_byte;}
 		EXPR_LST
 		{
 		  if (text_dir)
@@ -2178,7 +2179,7 @@ ASM_DIRECTIVE:	Y_ALIAS_DIR	Y_REG	Y_REG
 
 	|	Y_DOUBLE_DIR
 		{
-		  store_op = (void(*)(void*))store_double;
+		  store_fp_op = store_double;
 		  if (data_dir) set_data_alignment (3);
 		}
 		FP_EXPR_LST
@@ -2216,7 +2217,7 @@ ASM_DIRECTIVE:	Y_ALIAS_DIR	Y_REG	Y_REG
 
 	|	Y_FLOAT_DIR
 		{
-		  store_op = (void(*)(void*))store_float;
+		  store_fp_op = store_float;
 		  if (data_dir) set_data_alignment (2);
 		}
 		FP_EXPR_LST
@@ -2240,7 +2241,7 @@ ASM_DIRECTIVE:	Y_ALIAS_DIR	Y_REG	Y_REG
 
 	|	Y_HALF_DIR
 		{
-		  store_op = (void(*)(void*))store_half;
+		  store_op = store_half;
 		  if (data_dir) set_data_alignment (1);
 		}
 		EXPR_LST
@@ -2378,7 +2379,7 @@ ASM_DIRECTIVE:	Y_ALIAS_DIR	Y_REG	Y_REG
 
 	|	Y_WORD_DIR
 		{
-		  store_op = (void(*)(void*))store_word_data;
+		  store_op = store_word_data;
 		  if (data_dir) set_data_alignment (2);
 		}
 		EXPR_LST
@@ -2621,29 +2622,29 @@ FACTOR:         Y_INT
 
 EXPR_LST:	EXPR_LST	EXPRESSION
 		{
-		  store_op ($2.p);
+		  store_op ($2.i);
 		}
 	|	EXPRESSION
 		{
-		  store_op ($1.p);
+		  store_op ($1.i);
 		}
 	|	EXPRESSION ':' EXPR
 		{
 		  int i;
 
 		  for (i = 0; i < $3.i; i ++)
-		    store_op ($1.p);
+		    store_op ($1.i);
 		}
 	;
 
 
 FP_EXPR_LST:	FP_EXPR_LST Y_FP
 		{
-		  store_op ($2.p);
+		  store_fp_op ((double*)$2.p);
 		}
 	|	Y_FP
 		{
-		  store_op ($1.p);
+		  store_fp_op ((double*)$1.p);
 		}
 	;
 

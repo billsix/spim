@@ -1,3 +1,8 @@
+2020-01-15  Larus  <larus@Jim-Macbook-Air>
+
+	* CPU/parser.y:
+	Fixed type error (g++-9).
+
 2020-01-14  Larus  <larus@Jim-Macbook-Air>
 
 	* Release 9.1.21
