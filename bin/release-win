@@ -6,9 +6,12 @@
 #
 
 RELEASE_DIR="build_Release"
-QT_DIR="C:\OSS\Qt\5.5\msvc2013"
+
+QT_DIR="C:/Qt/5.14.0/mingw73_64"
 QT_BIN_DIR=$QT_DIR/bin
 QT_PLUGIN_DIR=$QT_DIR/plugins
+
+MINGW_LIB="C:/Qt/Tools/mingw730_64/x86*/lib"
 
 WIX_DIR="Setup/QtSpim_Win_Deployment/WiX"
 CACHE_DIR=$WIX_DIR/cache
@@ -16,12 +19,11 @@ CACHE_DIR=$WIX_DIR/cache
 rm -fr $CACHE_DIR
 mkdir $CACHE_DIR
 
-cp -p $RELEASE_DIR/release/QtSpim.exe $CACHE_DIR
+cp -p $RELEASE_DIR/QtSpim.exe $CACHE_DIR
 cp -p $QT_BIN_DIR/assistant.exe $CACHE_DIR
 
 cp -pr $RELEASE_DIR/help $CACHE_DIR
 
-cp -p $QT_BIN_DIR/Qt5CLucene.dll $CACHE_DIR
 cp -p $QT_BIN_DIR/Qt5Core.dll $CACHE_DIR
 cp -p $QT_BIN_DIR/Qt5Gui.dll $CACHE_DIR
 cp -p $QT_BIN_DIR/Qt5Help.dll $CACHE_DIR
@@ -36,16 +38,13 @@ cp -p $QT_BIN_DIR/Qt5Quick.dll $CACHE_DIR
 cp -p $QT_BIN_DIR/Qt5Sensors.dll $CACHE_DIR
 cp -p $QT_BIN_DIR/Qt5Sql.dll $CACHE_DIR
 cp -p $QT_BIN_DIR/Qt5WebChannel.dll $CACHE_DIR
-cp -p $QT_BIN_DIR/Qt5WebKit.dll $CACHE_DIR
-cp -p $QT_BIN_DIR/Qt5WebKitWidgets.dll $CACHE_DIR
 cp -p $QT_BIN_DIR/Qt5Widgets.dll $CACHE_DIR
 
-cp -p $QT_BIN_DIR/icudt54.dll $CACHE_DIR
-cp -p $QT_BIN_DIR/icuuc54.dll $CACHE_DIR
-cp -p $QT_BIN_DIR/icuin54.dll $CACHE_DIR
-
 cp -p $QT_BIN_DIR/libEGL.dll $CACHE_DIR
-cp -p $QT_BIN_DIR/libGLESv2.dll $CACHE_DIR
+
+cp -p $MINGW_LIB/libstdc++-6.dll $CACHE_DIR
+cp -p $MINGW_LIB/libgcc_s_seh-1.dll $CACHE_DIR
+cp -p $MINGW_LIB/libwinpthread-1.dll $CACHE_DIR
 
 cp -p Setup/NewIcon.ico $CACHE_DIR
 cp -p Setup/NewIcon256x256.png $CACHE_DIR

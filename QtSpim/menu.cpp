@@ -813,7 +813,7 @@ void SpimView::help_ViewHelp()
     QProcess *process = new QProcess;
     QStringList args;
 
-    QString helpFile[] = {qgetenv("PROGRAMFILES") + QString("/QtSpim/help/qtspim.qhc"), // Windows
+    QString helpFile[] = {qgetenv("PROGRAMFILES(x86)") + QString("/QtSpim/help/qtspim.qhc"), // Windows
                           QString("/Applications/QtSpim.app/Contents/Resources/doc/qtspim.qhc"), // Mac
                           QString("/usr/lib/qtspim/help/qtspim.qhc"), // Linux
                           0};

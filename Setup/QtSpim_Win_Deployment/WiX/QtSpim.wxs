@@ -64,11 +64,6 @@
 
 
 		  <!-- DLLs: -->
-          <Component Id='Qt5CLuceneDLL' Guid='ef727b9a-a2b7-472f-a12f-b78600547bef'>
-            <File Id='Qt5CLuceneDLL' Name='Qt5CLucene.dll' DiskId='1'
-                  Source='cache/Qt5CLucene.dll' KeyPath='yes' />
-          </Component>
-
           <Component Id='Qt5CoreDLL' Guid='9d3a2e2a-7205-4dc6-b7bd-286f90252716'>
             <File Id='Qt5CoreDLL' Name='Qt5Core.dll' DiskId='1'
                   Source='cache/Qt5Core.dll' KeyPath='yes' />
@@ -139,44 +134,29 @@
                   Source='cache/Qt5WebChannel.dll' KeyPath='yes' />
           </Component>
 
-          <Component Id='Qt5WebKitDLL' Guid='71428487-094e-4585-bbad-97e12d30c20f'>
-            <File Id='Qt5WebKitDLL' Name='Qt5WebKit.dll' DiskId='1'
-                  Source='cache/Qt5WebKit.dll' KeyPath='yes' />
-          </Component>
-
-          <Component Id='Qt5WebKitWidgetsDLL' Guid='59062299-f544-48e3-891f-099dd808d576'>
-            <File Id='Qt5WebKitWidgetsDLL' Name='Qt5WebKitWidgets.dll' DiskId='1'
-                  Source='cache/Qt5WebKitWidgets.dll' KeyPath='yes' />
-          </Component>
-
           <Component Id='Qt5WidgetsDLL' Guid='a5fad59a-1f46-4c83-9218-c563f7f3109f'>
             <File Id='Qt5WidgetsDLL' Name='Qt5Widgets.dll' DiskId='1'
                   Source='cache/Qt5Widgets.dll' KeyPath='yes' />
           </Component>
 
-		  <Component Id='icudt54DLL' Guid='669b7856-7345-4649-8203-bba8896e199a'>
-            <File Id='icudt54DLL' Name='icudt54.dll' DiskId='1'
-                  Source='cache/icudt54.dll' KeyPath='yes' />
+		  <Component Id='libstdcxx6' Guid='db580bd2-fe18-4918-a873-9a20f8d91f7b'>
+            <File Id='libstdcxx6' Name='libstdc++-6.dll' DiskId='1'
+                  Source='cache/libstdc++-6.dll' KeyPath='yes' />
           </Component>
 
-		  <Component Id='icuuc54DLL' Guid='3e5f7cc1-2c35-4c74-a2a1-30f9e75f2494'>
-            <File Id='icuuc54DLL' Name='icuuc54.dll' DiskId='1'
-                  Source='cache/icuuc54.dll' KeyPath='yes' />
+		  <Component Id='libgccsseh1' Guid='3ad000e4-02da-455f-b9e9-caa37a62ad24'>
+            <File Id='libgccsseh1' Name='libgcc_s_seh-1.dll' DiskId='1'
+                  Source='cache/libgcc_s_seh-1.dll' KeyPath='yes' />
           </Component>
 
-		  <Component Id='icuin54DLL' Guid='1ff8989c-6513-4c4f-8e1b-88ca61e8fdd4'>
-            <File Id='icuin54DLL' Name='icuin54.dll' DiskId='1'
-                  Source='cache/icuin54.dll' KeyPath='yes' />
+		  <Component Id='libwinpthread1' Guid='b4272153-176e-421b-b736-5f4628625a79'>
+            <File Id='libwinpthread1' Name='libwinpthread-1.dll' DiskId='1'
+                  Source='cache/libwinpthread-1.dll' KeyPath='yes' />
           </Component>
 
 		  <Component Id='libEGLDLL' Guid='7d3c9486-5bca-4492-8096-4a134c9e2850'>
             <File Id='libEGLDLL' Name='libEGL.dll' DiskId='1'
                   Source='cache/libEGL.dll' KeyPath='yes' />
-          </Component>
-
-		  <Component Id='libGLESv2DLL' Guid='0f994bb8-cddd-4f31-9ae0-88b21a682960'>
-            <File Id='libGLESv2DLL' Name='libGLESv2.dll' DiskId='1'
-                  Source='cache/libGLESv2.dll' KeyPath='yes' />
           </Component>
 
           <!-- C:/Program Files/QtSpim/imageformats: -->
@@ -250,7 +230,6 @@
 	  <ComponentRef Id='NewIcon' />
 	  <ComponentRef Id='NewIcon256x256' />
 	  <ComponentRef Id='HelloWorld' />
-	  <ComponentRef Id='Qt5CLuceneDLL' />
 	  <ComponentRef Id='Qt5CoreDLL' />
 	  <ComponentRef Id='Qt5GuiDLL' />
 	  <ComponentRef Id='Qt5HelpDLL' />
@@ -265,14 +244,11 @@
 	  <ComponentRef Id='Qt5SensorsDLL' />
 	  <ComponentRef Id='Qt5SqlDLL' />
 	  <ComponentRef Id='Qt5WebChannelDLL' />
-	  <ComponentRef Id='Qt5WebKitDLL' />
-	  <ComponentRef Id='Qt5WebKitWidgetsDLL' />
 	  <ComponentRef Id='Qt5WidgetsDLL' />
-	  <ComponentRef Id='icudt54DLL' />
-	  <ComponentRef Id='icuuc54DLL' />
-	  <ComponentRef Id='icuin54DLL' />
+	  <ComponentRef Id='libstdcxx6' />
+	  <ComponentRef Id='libgccsseh1' />
+	  <ComponentRef Id='libwinpthread1' />
 	  <ComponentRef Id='libEGLDLL' />
-	  <ComponentRef Id='libGLESv2DLL' />
 	  <ComponentRef Id='qjpegDLL' />
 	  <ComponentRef Id='qsvgDLL' />
 	  <ComponentRef Id='qwindowsDLL' />
