@@ -210,6 +210,10 @@ linux-g++ {
   # Surpress error when deleting non-existent file.
   #
   QMAKE_DEL_FILE = rm -f
+
+  # Do not add -lGL, since this requires installation of OpenCL libraries,
+  # which are already installed with QtCreator.
+  QMAKE_LIBS_OPENGL = 
 }
 
 macx-g++ {
