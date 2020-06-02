@@ -56,8 +56,9 @@ static void i_type_inst_full_word (int opcode, int rt, int rs, imm_expr *expr,
 static void inst_cmp (instruction *inst1, instruction *inst2);
 static instruction *make_r_type_inst (int opcode, int rd, int rs, int rt);
 static instruction *mk_i_inst (int32 value, int opcode, int rs, int rt, int offset);
-static instruction *mk_j_inst (int32, int opcode, int target);
-static instruction *mk_r_inst (int32, int opcode, int rs, int rt, int rd, int shamt);
+static instruction *mk_j_inst (int32 value, int opcode, int target);
+static instruction *mk_r_inst (int32 value, int opcode, int rs, int rt, int rd, int shamt);
+static instruction *mk_co_r_inst (int32 value, int opcode, int fd, int fs, int ft);
 static void produce_immediate (imm_expr *expr, int rt, int value_known, int32 value);
 static void sort_a_opcode_table ();
 static void sort_i_opcode_table ();
@@ -691,7 +692,7 @@ format_an_inst (str_stream *ss, instruction *inst, mem_addr addr)
   name_val_val *entry;
   int line_start = ss_length (ss);
 
-  if (inst_is_breakpoint (addr))
+  if (addr != 0 && inst_is_breakpoint (addr))
     {
       delete_breakpoint (addr);
       ss_printf (ss, "*");
@@ -1532,20 +1533,20 @@ inst_decode (int32 val)
       return (mk_i_inst (val, i_opcode, BIN_BASE(val), BIN_FT(val), val & 0xffff));
 
     case FP_R2ds_TYPE_INST:
-      return (mk_r_inst (val, i_opcode, BIN_FS(val), 0, BIN_FD(val), 0));
+      return (mk_co_r_inst (val, i_opcode, BIN_FS(val), 0, BIN_FD(val)));
 
     case FP_R2ts_TYPE_INST:
       return (mk_r_inst (val, i_opcode, 0, BIN_RT(val), BIN_FS(val), 0));
 
     case FP_CMP_TYPE_INST:
       {
-	instruction *inst = mk_r_inst (val, i_opcode, BIN_FS (val), BIN_FT (val), BIN_FD(val), 0);
+	instruction *inst = mk_r_inst (val, i_opcode, BIN_FS(val), BIN_FT(val), BIN_FD(val), 0);
 	SET_COND (inst, val & 0xf);
 	return (inst);
       }
 
     case FP_R3_TYPE_INST:
-      return (mk_r_inst (val, i_opcode, BIN_FS(val), BIN_FT(val), BIN_FD(val), 0));
+      return (mk_co_r_inst (val, i_opcode, BIN_FS(val), BIN_FT(val), BIN_FD(val)));
 
     case MOVC_TYPE_INST:
       return (mk_r_inst (val, i_opcode, BIN_RS(val), BIN_RT(val), BIN_RD(val), 0));
@@ -1581,6 +1582,19 @@ mk_r_inst (int32 val, int opcode, int rs, int rt, int rd, int shamt)
   return (inst);
 }
 
+static instruction *
+mk_co_r_inst (int32 val, int opcode, int fs, int ft, int fd)
+{
+  instruction *inst = (instruction *) zmalloc (sizeof (instruction));
+
+  SET_OPCODE (inst, opcode);
+  SET_FS (inst, fs);
+  SET_FT (inst, ft);
+  SET_FD (inst, fd);
+  SET_ENCODING (inst, val);
+  SET_EXPR (inst, NULL);
+  return (inst);
+}
 
 static instruction *
 mk_i_inst (int32 val, int opcode, int rs, int rt, int offset)
@@ -1628,11 +1642,18 @@ inst_cmp (instruction *inst1, instruction *inst2)
   static str_stream ss;
 
   ss_clear (&ss);
-  if (memcmp (inst1, inst2, sizeof (instruction) - 4) != 0)
+  if (inst1->opcode != inst2->opcode
+      || inst1->encoding != inst2->encoding
+      || RS(inst1) != RS(inst2)
+      || RT(inst1) != RT(inst2)
+      || RD(inst1) != RD(inst2)
+      || SHAMT(inst1) != SHAMT(inst2))
     {
       ss_printf (&ss, "=================== Not Equal ===================\n");
       format_an_inst (&ss, inst1, 0);
+      ss_printf (&ss, "===================\n");
       format_an_inst (&ss, inst2, 0);
       ss_printf (&ss, "=================== Not Equal ===================\n");
+      error(ss_to_string(&ss));
     }
 }

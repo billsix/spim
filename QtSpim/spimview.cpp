@@ -218,6 +218,9 @@ void SpimView::UpdateDataDisplay()
 {
     // Text segment rarely changes -- update manually
     //
+    if (text_modified){
+        DisplayTextSegments(true);
+    }
     DisplayIntRegisters();
     DisplayFPRegisters();
     DisplayDataSegments(false);

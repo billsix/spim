@@ -267,6 +267,7 @@ void r_type_inst (int opcode, int rd, int rs, int rt);
 void raise_exception(int excode);
 instruction *set_breakpoint (mem_addr addr);
 void store_instruction (instruction *inst);
+void test_assembly (instruction *inst);
 void text_begins_at_point (mem_addr addr);
 imm_expr *upper_bits_of_expr (imm_expr *old_expr);
 void user_kernel_text_segment (bool to_kernel);

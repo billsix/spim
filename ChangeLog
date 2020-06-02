@@ -1,3 +1,8 @@
+2020-06-02  Larus  <larus@Jim-Macbook-Air>
+
+	* CPU/inst.{cpp,h}, spim/Makefile [https://sourceforge.net/p/spimsimulator/bugs/96/]:
+	Fix problem with incorrect decoding of binary values for FP instructions.
+
 2020-05-09  larus  <larus@ubuntu>
 
 	* Release 9.1.22 (Linux only):
