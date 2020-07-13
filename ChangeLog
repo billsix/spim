@@ -1,3 +1,8 @@
+2020-07-13  Larus  <larus@Jim-Macbook-Air>
+
+	* CPU/inst.cpp [https://sourceforge.net/p/spimsimulator/bugs/97/]:
+	Incorrect call to write_ouput allows string injection.
+
 2020-06-02  Larus  <larus@Jim-Macbook-Air>
 
 	* CPU/inst.{cpp,h}, spim/Makefile [https://sourceforge.net/p/spimsimulator/bugs/96/]:
