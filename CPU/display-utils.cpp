@@ -91,8 +91,6 @@ format_registers (str_stream *ss, int print_gpr_hex, int print_fpr_hex)
   ss_printf (ss, "\n FIR    = %08x   ", FIR);
   ss_printf (ss, " FCSR    = %08x   ", FCSR);
   ss_printf (ss, " FCCR   = %08x  ", FCCR);
-  ss_printf (ss, " FEXR    = %08x\n", FEXR);
-  ss_printf (ss, " FENR   = %08x\n", FENR);
 
   ss_printf (ss, "\t\t\t      Double Floating Point Registers\n");
 

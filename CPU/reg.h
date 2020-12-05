@@ -211,14 +211,6 @@ extern int *FWR;		/* is possible */
 #define FCCR_FCC	0x000000ff
 #define FCCR_MASK	(FCCR_FCC)
 
-#define FEXR_REG	26
-#define FEXR		(FCR[FEXR_REG])
-/* No implemented fields */
-
-#define FENR_REG	28
-#define FENR		(FCR[FENR_REG])
-/* No implemented fields */
-
 #define FCSR_REG	31
 #define FCSR		(FCR[FCSR_REG])
 /* Implemented fields: */
