@@ -1015,15 +1015,15 @@ movf_:	.asciiz "Testing MOVF\n"
 	la $a0 movf_
 	syscall
 
-	li $2 0x70
-	ctc1 $2 $25
+	ctc1 $0, $31	# clear cc's
+
 	li $2 1
 	li $3 0
 	li $4 2
 	movf $3 $2 1
 	bne $3 1 fail
 	movf $3 $4 6
-	bne $3 1 fail
+	bne $3 2 fail
 
 
 	.data
@@ -1049,13 +1049,14 @@ movt_:	.asciiz "Testing MOVT\n"
 	la $a0 movt_
 	syscall
 
-	li $2 0x70
-	ctc1 $2 $25
+	li $2 0xfe800000
+	ctc1 $2 $31		# set ccs
+
 	li $2 1
 	li $3 0
 	li $4 2
 	movt $3 $2 1
-	bne $3 0 fail
+	bne $3 1 fail
 	movt $3 $4 6
 	bne $3 2 fail
 
@@ -2437,6 +2438,33 @@ l252:	c.le.s $f4 $f0
 	j fail
 l253:
 
+	.data
+c.le.s_1_:	.asciiz "Testing C.LE.S CC=1\n"
+	.text
+	li $v0 4	# syscall 4 (print_str)
+	la $a0 c.le.s_1_
+	syscall
+
+	lwc1 $f0 fp_s1
+	lwc1 $f2 fp_s1p5
+	lwc1 $f4 fp_sm2
+	c.le.s 1 $f0 $f2
+	bc1f 1 fail
+	bc1t 1 l250_1
+	j fail
+l250_1:	c.le.s 1 $f2 $f0
+	bc1t 1 fail
+	bc1f 1 l251_1
+	j fail
+l251_1:	c.le.s 1 $f0 $f0
+	bc1f 1 fail
+	bc1t 1 l252_1
+	j fail
+l252_1:	c.le.s 1 $f4 $f0
+	bc1f 1 fail
+	bc1t 1 l253_1
+	j fail
+l253_1:
 
 	.data
 c.lt.d_:	.asciiz "Testing C.LT.D\n"
@@ -2469,6 +2497,36 @@ l262:	c.lt.d $f4 $f0
 	j fail
 l263:
 
+	.data
+c.lt.d_7_:	.asciiz "Testing C.LT.D CC=7\n"
+	.text
+	li $v0 4	# syscall 4 (print_str)
+	la $a0 c.lt.d_7_
+	syscall
+
+	lwc1 $f0 fp_d1
+	lwc1 $f1 fp_d1+4
+	lwc1 $f2 fp_d1p5
+	lwc1 $f3 fp_d1p5+4
+	lwc1 $f4 fp_dm2
+	lwc1 $f5 fp_dm2+4
+	c.lt.d 7 $f0 $f2
+	bc1f 7 fail
+	bc1t 7 l260_7
+	j fail
+l260_7:	c.lt.d 7 $f2 $f0
+	bc1t 7 fail
+	bc1f 7 l261_7
+	j fail
+l261_7:	c.lt.d 7 $f0 $f0
+	bc1t 7 fail
+	bc1f 7 l262_7
+	j fail
+l262_7:	c.lt.d 7 $f4 $f0
+	bc1f 7 fail
+	bc1t 7 l263_7
+	j fail
+l263_7:
 
 	.data
 c.lt.s_:	.asciiz "Testing C.LT.S\n"
@@ -3449,26 +3507,21 @@ movf.d_:.asciiz "Testing MOVF.D\n"
 	la $a0 movf.d_
 	syscall
 
-	li $2 0xf0
-	ctc1 $2 $25
+	li $2 0xfe000000
+	ctc1 $2 $31		# clear cc0, set others
 
-	lw $4 fp_d1
-	lw $5 fp_d1+4
 	lwc1 $f2 fp_d1
 	lwc1 $f3 fp_d1+4
-	mtc1 $0 $6
-	mtc1 $0 $7
-	movf.d $f4 $f2 1
+	lwc1 $f4 fp_d2
+	lwc1 $f5 fp_d2+4
+	lwc1 $f6 fp_d1
+	lwc1 $f7 fp_d1+4
+	movf.d $f4 $f2 0
 	movf.d $f6 $f4 7
-	mfc1 $6 $f4
-	mfc1 $7 $f5
-	bne $4 $6 fail
-	bne $5 $7 fail
-	mfc1 $6 $f6
-	mfc1 $7 $f7
-	bne $6 0 fail
-	bne $7 0 fail
-
+	c.eq.d $f2 $f4
+	bc1f fail
+	c.eq.d $f2 $f6
+	bc1f fail
 
 	.data
 movf.s_:.asciiz "Testing MOVF.S\n"
@@ -3477,20 +3530,18 @@ movf.s_:.asciiz "Testing MOVF.S\n"
 	la $a0 movf.s_
 	syscall
 
-	li $2 0xf0
-	ctc1 $2 $25
+	li $2 0xfe000000
+	ctc1 $2 $31		# clear cc0, set others
 
-	lw $4 fp_s1
 	lwc1 $f2 fp_s1
-	mtc1 $0 $6
-	mtc1 $0 $7
-	movf.s $f4 $f2 1
+	lwc1 $f4 fp_s2
+	lwc1 $f6 fp_s1
+	movf.s $f4 $f2 0
 	movf.s $f6 $f4 7
-	mfc1 $6 $f4
-	bne $4 $6 fail
-	mfc1 $6 $f6
-	bne $6 0 fail
-
+	c.eq.s $f2 $f4
+	bc1f fail
+	c.eq.s $f2 $f6
+	bc1f fail
 
 	.data
 movn.d_:.asciiz "Testing MOVN.D\n"
@@ -3546,26 +3597,21 @@ movt.d_:.asciiz "Testing MOVT.D\n"
 	la $a0 movt.d_
 	syscall
 
-	li $2 0xf
-	ctc1 $2 $25
+	li $2 0xfe000000
+	ctc1 $2 $31		# clear cc0, set others
 
-	lw $4 fp_d1
-	lw $5 fp_d1+4
 	lwc1 $f2 fp_d1
 	lwc1 $f3 fp_d1+4
-	mtc1 $0 $6
-	mtc1 $0 $7
-	movt.d $f4 $f2 1
+	lwc1 $f4 fp_d2
+	lwc1 $f5 fp_d2+4
+	lwc1 $f6 fp_d1
+	lwc1 $f7 fp_d1+4
+	movt.d $f4 $f2 0
 	movt.d $f6 $f4 7
-	mfc1 $6 $f4
-	mfc1 $7 $f5
-	bne $4 $6 fail
-	bne $5 $7 fail
-	mfc1 $6 $f6
-	mfc1 $7 $f7
-	bne $6 0 fail
-	bne $7 0 fail
-
+	c.eq.d $f2 $f4
+	bc1t fail
+	c.eq.d $f2 $f6
+	bc1t fail
 
 	.data
 movt.s_:.asciiz "Testing MOVT.S\n"
@@ -3574,19 +3620,18 @@ movt.s_:.asciiz "Testing MOVT.S\n"
 	la $a0 movt.s_
 	syscall
 
-	li $2 0xf
-	ctc1 $2 $25
+	li $2 0xfe000000
+	ctc1 $2 $31		# clear cc0, set others
 
-	lw $4 fp_s1
 	lwc1 $f2 fp_s1
-	mtc1 $0 $6
-	mtc1 $0 $7
-	movt.s $f4 $f2 1
+	lwc1 $f4 fp_s2
+	lwc1 $f6 fp_s1
+	movt.s $f4 $f2 0
 	movt.s $f6 $f4 7
-	mfc1 $6 $f4
-	bne $4 $6 fail
-	mfc1 $6 $f6
-	bne $6 0 fail
+	c.eq.s $f2 $f4
+	bc1t fail
+	c.eq.s $f2 $f6
+	bc1t fail
 
 
 	.data

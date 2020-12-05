@@ -1218,7 +1218,7 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 		int cc = CC (inst);
 		int nd = ND (inst);	/* 1 => nullify */
 		int tf = TF (inst);	/* 0 => BC1F, 1 => BC1T */
-		BRANCH_INST ((FCCR & (1 << cc)) == (tf << cc),
+		BRANCH_INST (FCC(cc) == tf,
 			     PC + IDISP (inst),
 			     nd);
 		break;
@@ -1244,7 +1244,7 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 		float v1 = FPR_S (FS (inst)), v2 = FPR_S (FT (inst));
 		double dv1 = v1, dv2 = v2;
 		int cond = COND (inst);
-		int cc = FD (inst);
+		int cc = FD (inst) >> 2;
 
 		if (NaN (dv1) || NaN (dv2))
 		  {
@@ -1280,7 +1280,7 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 	      {
 		double v1 = FPR_D (FS (inst)), v2 = FPR_D (FT (inst));
 		int cond = COND (inst);
-		int cc = FD (inst);
+		int cc = FD (inst) >> 2;
 
 		if (NaN (v1) || NaN (v2))
 		  {
@@ -1307,21 +1307,9 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 	      if (FIR_REG == FS (inst))
 		{
 		  /* Read only register */
-		  FIR = FIR_MASK;
-		}
-	      else if (FCCR_REG == FS (inst))
-		{
-		  /* FCC bits in FCSR and FCCR linked */
-		  FCSR = (FCSR & ~0xfe400000)
-		    | ((FCCR & 0xfe) << 24)
-		    | ((FCCR & 0x1) << 23);
-		  FCCR &= FCCR_MASK;
 		}
 	      else if (FCSR_REG == FS (inst))
 		{
-		  /* FCC bits in FCSR and FCCR linked */
-		  FCCR = ((FCSR >> 24) & 0xfe) | ((FCSR >> 23) & 0x1);
-		  FCSR &= FCSR_MASK;
 		  if ((R[RT (inst)] & ~FCSR_MASK) != 0)
 		    /* Trying to set unsupported mode */
 		    RAISE_EXCEPTION (ExcCode_FPE, {});
@@ -1457,7 +1445,7 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 	    case Y_MOVF_OP:
 	      {
 		int cc = CC (inst);
-		if ((FCCR & (1 << cc)) == 0)
+		if (FCC(cc) == 0)
 		  R[RD (inst)] = R[RS (inst)];
 		break;
 	      }
@@ -1465,7 +1453,7 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 	    case Y_MOVF_D_OP:
 	      {
 		int cc = CC (inst);
-		if ((FCCR & (1 << cc)) == 0)
+		if (FCC(cc) == 0)
 		  SET_FPR_D (FD (inst), FPR_D (FS (inst)));
 		break;
 	      }
@@ -1473,7 +1461,7 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 	    case Y_MOVF_S_OP:
 	      {
 		int cc = CC (inst);
-		if ((FCCR & (1 << cc)) == 0)
+		if (FCC(cc) == 0)
 		  SET_FPR_S (FD (inst), FPR_S (FS (inst)));
 		break;
 
@@ -1496,7 +1484,7 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 	    case Y_MOVT_OP:
 	      {
 		int cc = CC (inst);
-		if ((FCCR & (1 << cc)) != 0)
+		if (FCC(cc) != 0)
 		  R[RD (inst)] = R[RS (inst)];
 		break;
 	      }
@@ -1504,7 +1492,7 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 	    case Y_MOVT_D_OP:
 	      {
 		int cc = CC (inst);
-		if ((FCCR & (1 << cc)) != 0)
+		if (FCC(cc) != 0)
 		  SET_FPR_D (FD (inst), FPR_D (FS (inst)));
 		break;
 	      }
@@ -1512,7 +1500,7 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 	    case Y_MOVT_S_OP:
 	      {
 		int cc = CC (inst);
-		if ((FCCR & (1 << cc)) != 0)
+		if (FCC(cc) != 0)
 		  SET_FPR_S (FD (inst), FPR_S (FS (inst)));
 		break;
 
@@ -1807,24 +1795,13 @@ signed_multiply (reg_word v1, reg_word v2)
 static void
 set_fpu_cc (int cond, int cc, int less, int equal, int unordered)
 {
-  int result;
-  int fcsr_bit;
+  int result = 0;
 
-  result = 0;
   if (cond & COND_LT) result |= less;
   if (cond & COND_EQ) result |= equal;
   if (cond & COND_UN) result |= unordered;
 
-  FCCR = (FCCR & ~(1 << cc)) | (result << cc);
-  if (0 == cc)
-    {
-      fcsr_bit = 23;
-    }
-  else
-    {
-      fcsr_bit = 24 + cc;
-    }
-  FCSR = (FCSR & ~(1 << fcsr_bit)) | (result << fcsr_bit);
+  SET_FCC(cc, result);
 }
 
 

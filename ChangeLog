@@ -1,3 +1,8 @@
+2020-12-05  Larus  <larus@Jim-Macbook-Air>
+
+        * CPU/run.cpp, spim-utils.cpp, reg.h, display-utils.cpp Tests/tt.core.s [https://sourceforge.net/p/spimsimulator/bugs/98/]:
+        Fix floating point condition code, which only really worked for CC = 0, default.
+
 2020-07-13  Larus  <larus@Jim-Macbook-Air>
 
 	* CPU/inst.cpp [https://sourceforge.net/p/spimsimulator/bugs/97/]:

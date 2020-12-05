@@ -179,7 +179,6 @@ initialize_registers ()
 
   FIR = FIR_W | FIR_D | FIR_S;	/* Word, double, & single implemented */
   FCSR = 0x0;
-  FCCR = 0x0;
 }
 
 

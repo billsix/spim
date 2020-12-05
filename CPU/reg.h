@@ -199,23 +199,26 @@ extern int *FWR;		/* is possible */
 
 #define FIR_REG		0
 #define FIR		(FCR[FIR_REG])
+
 /* Implemented fields: */
 #define FIR_W		0x0008000
 #define FIR_D		0x0001000
 #define FIR_S		0x0000800
 #define FIR_MASK	(FIR_W | FIR_D | FIR_S)
 
-#define FCCR_REG	25
-#define FCCR		(FCR[FCCR_REG])
-/* Implemented fields: */
-#define FCCR_FCC	0x000000ff
-#define FCCR_MASK	(FCCR_FCC)
 
 #define FCSR_REG	31
 #define FCSR		(FCR[FCSR_REG])
+
 /* Implemented fields: */
 #define FCSR_FCC	0xfe800000
 #define FCSR_MASK	(FCSR_FCC)
+#define CC0_bit 23
+#define CC1_bit 25
+#define CC_mask(n) ((((n) == 0) || ((n) > 7)) ? (1 << CC0_bit) : (1 << (CC1_bit + (n) - 1)))
+#define FCC(n) (((FCSR & CC_mask(n)) == 0) ? 0 : 1)
+#define SET_FCC(n, v) if ((v) == 0) { FCSR &= ~CC_mask(n); } else { FCSR |= CC_mask(n); }
+
 /* Floating point Cause (not implemented): */
 #define FCSR_Cause_E	0x00020000
 #define FCSR_Cause_V	0x00010000
