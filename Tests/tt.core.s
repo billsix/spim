@@ -2,7 +2,7 @@
 # A torture test for the SPIM simulator.
 # Core tests for instructions that do not differ on big and little endian systems.
 #
-# Copyright (c) 1990-2010, James R. Larus.
+# Copyright (c) 1990-2020, James R. Larus.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,

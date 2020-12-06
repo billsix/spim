@@ -1,7 +1,7 @@
 /* SPIM S20 MIPS simulator.
    Execute SPIM instructions.
 
-   Copyright (c) 1990-2010, James R. Larus.
+   Copyright (c) 1990-2020, James R. Larus.
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without modification,
@@ -1244,7 +1244,7 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 		float v1 = FPR_S (FS (inst)), v2 = FPR_S (FT (inst));
 		double dv1 = v1, dv2 = v2;
 		int cond = COND (inst);
-		int cc = FD (inst) >> 2;
+		int cc = CCFP (inst);
 
 		if (NaN (dv1) || NaN (dv2))
 		  {
@@ -1280,7 +1280,7 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 	      {
 		double v1 = FPR_D (FS (inst)), v2 = FPR_D (FT (inst));
 		int cond = COND (inst);
-		int cc = FD (inst) >> 2;
+		int cc = CCFP(inst);
 
 		if (NaN (v1) || NaN (v2))
 		  {

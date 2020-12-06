@@ -1,7 +1,7 @@
 /* SPIM S20 MIPS simulator.
    Description of a SPIM S20 instruction.
 
-   Copyright (c) 1990-2010, James R. Larus.
+   Copyright (c) 1990-2020, James R. Larus.
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without modification,
@@ -138,6 +138,9 @@ typedef struct inst_s
 #define ND(INST)		((RT(INST) & 0x2) >> 1)
 #define TF(INST)		(RT(INST) & 0x1)
 
+#define CCFP(INST)	(FD(INST) >> 2)
+#define NDFP(INST)	((FD(INST) & 0x2) >> 1)
+#define TFF(INST)	  (FD(INST) & 0x1)
 
 #define TARGET(INST)		(INST)->r_t.target
 #define SET_TARGET(INST, VAL)	(INST)->r_t.target = (mem_addr)(VAL)

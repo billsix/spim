@@ -1,7 +1,7 @@
 /* SPIM S20 MIPS simulator.
    Declarations of registers and code for accessing them.
 
-   Copyright (c) 1990-2010, James R. Larus.
+   Copyright (c) 1990-2020, James R. Larus.
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without modification,
