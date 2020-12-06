@@ -1,7 +1,7 @@
 /* SPIM S20 MIPS simulator.
    Terminal interface for SPIM simulator.
 
-   Copyright (c) 1990-2010, James R. Larus.
+   Copyright (c) 1990-2020, James R. Larus.
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without modification,
@@ -180,8 +180,6 @@ Q_OBJECT
     float oldFPR_S[FGR_LENGTH];
     reg_word oldFIR;
     reg_word oldFCSR;
-    reg_word oldFCCR;
-    reg_word oldFEXR;
 
 
     // Double precision FP registers window

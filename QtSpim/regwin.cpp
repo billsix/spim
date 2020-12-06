@@ -1,7 +1,7 @@
 /* SPIM S20 MIPS simulator.
    Terminal interface for SPIM simulator.
 
-   Copyright (c) 1990-2010, James R. Larus.
+   Copyright (c) 1990-2020, James R. Larus.
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without modification,
@@ -145,8 +145,6 @@ QString SpimView::formatSFPRegisters()
 
     windowContents += formatSpecialSFPRegister(FIR, "FIR", FIR != oldFIR);
     windowContents += formatSpecialSFPRegister(FCSR, "FCSR", FCSR != oldFCSR);
-    windowContents += formatSpecialSFPRegister(FCCR, "FCCR", FCCR != oldFCCR);
-    windowContents += formatSpecialSFPRegister(FEXR, "FEXR", FEXR != oldFEXR);
 
     windowContents += "<br /><center><b>Single Precision</b></center>";
 
@@ -170,8 +168,6 @@ void SpimView::CaptureSFPRegisters()
     }
     oldFIR = FIR;
     oldFCSR = FCSR;
-    oldFCCR = FCCR;
-    oldFEXR = FEXR;
 }
 
 
@@ -467,14 +463,6 @@ void regTextEdit::changeValue()
                         else if (reg == "FCSR")
                         {
                             FCSR = newRegVal;
-                        }
-                        else if (reg == "FCCR")
-                        {
-                            FCCR = newRegVal;
-                        }
-                        else if (reg == "FEXR")
-                        {
-                            FEXR = newRegVal;
                         }
                     }
                 }
