@@ -1,7 +1,7 @@
 /* SPIM S20 MIPS simulator.
    Parser for instructions and assembler directives.
 
-   Copyright (c) 1990-2010, James R. Larus.
+   Copyright (c) 1990-2020, James R. Larus.
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without modification,
@@ -864,7 +864,8 @@ ASM_CODE:	LOAD_OPS	DEST	ADDRESS
 		  if ($2.i != $3.i)
 		    r_type_inst (Y_ADDU_OP, $2.i, 0, $3.i);
 
-		  i_type_inst_free (Y_BGEZ_OP, 0, $3.i, branch_offset (2));
+		  i_type_inst_free (Y_BGEZ_OP, 0, $3.i, branch_offset (3));
+		  nop_inst();
 		  r_type_inst (Y_SUB_OP, $2.i, 0, $3.i);
 		}
 
@@ -2772,7 +2773,8 @@ div_inst (int op, int rd, int rs, int rt, int const_divisor)
 {
   if (rd != 0 && !const_divisor)
     {
-      i_type_inst_free (Y_BNE_OP, 0, rt, branch_offset (2));
+      i_type_inst_free (Y_BNE_OP, 0, rt, branch_offset (3));
+	  nop_inst();
       trap_inst ();
     }
 
@@ -2803,7 +2805,8 @@ mult_inst (int op, int rd, int rs, int rt)
   if (op == Y_MULOU_POP && rd != 0)
     {
       r_type_inst (Y_MFHI_OP, 1, 0, 0);	/* Use $at */
-      i_type_inst_free (Y_BEQ_OP, 0, 1, branch_offset (2));
+      i_type_inst_free (Y_BEQ_OP, 0, 1, branch_offset (3));
+	  nop_inst();
       trap_inst ();
     }
   else if (op == Y_MULO_POP && rd != 0)
@@ -2811,7 +2814,8 @@ mult_inst (int op, int rd, int rs, int rt)
       r_type_inst (Y_MFHI_OP, 1, 0, 0); /* use $at */
       r_type_inst (Y_MFLO_OP, rd, 0, 0);
       r_sh_type_inst (Y_SRA_OP, rd, rd, 31);
-      i_type_inst_free (Y_BEQ_OP, rd, 1, branch_offset (2));
+      i_type_inst_free (Y_BEQ_OP, rd, 1, branch_offset (3));
+	  nop_inst();
       trap_inst ();
     }
   if (rd != 0)
@@ -2824,7 +2828,8 @@ set_le_inst (int op, int rd, int rs, int rt)
 {
   i_type_inst_free (Y_BNE_OP, rs, rt, branch_offset (3));
   i_type_inst_free (Y_ORI_OP, rd, 0, const_imm_expr (1));
-  i_type_inst_free (Y_BEQ_OP, 0, 0, branch_offset (2));
+  i_type_inst_free (Y_BEQ_OP, 0, 0, branch_offset (3));
+  nop_inst();
   r_type_inst ((op == Y_SLE_POP ? Y_SLT_OP : Y_SLTU_OP), rd, rs, rt);
 }
 
@@ -2841,7 +2846,8 @@ set_ge_inst (int op, int rd, int rs, int rt)
 {
   i_type_inst_free (Y_BNE_OP, rs, rt, branch_offset (3));
   i_type_inst_free (Y_ORI_OP, rd, 0, const_imm_expr (1));
-  i_type_inst_free (Y_BEQ_OP, 0, 0, branch_offset (2));
+  i_type_inst_free (Y_BEQ_OP, 0, 0, branch_offset (3));
+  nop_inst();
   r_type_inst (op == Y_SGE_POP ? Y_SLT_OP : Y_SLTU_OP, rd, rt, rs);
 }
 
@@ -2859,7 +2865,8 @@ set_eq_inst (int op, int rd, int rs, int rt)
   i_type_inst_free (Y_BEQ_OP, rs, rt, branch_offset (3));
   /* RD <- 0 (if not equal) */
   i_type_inst_free (Y_ORI_OP, rd, 0, if_neq);
-  i_type_inst_free (Y_BEQ_OP, 0, 0, branch_offset (2)); /* Branch always */
+  i_type_inst_free (Y_BEQ_OP, 0, 0, branch_offset (3)); /* Branch always */
+  nop_inst();
   /* RD <- 1 */
   i_type_inst_free (Y_ORI_OP, rd, 0, if_eq);
 }

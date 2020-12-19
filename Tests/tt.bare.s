@@ -3,7 +3,7 @@
 # Run with -notrap -delayed_branches -delayed_load flags (not -bare,
 # as file uses pseudo ops).
 #
-# Copyright (c) 1990-2010, James R. Larus.
+# Copyright (c) 1990-2020, James R. Larus.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -361,6 +361,137 @@ ld_:	.asciiz "Testing LD\n"
 	lw $3 d
 	addu $3 $0 5		# Delayed instruction
 	bne $3 101 fail
+	nop
+
+
+# Test ABS pseduo instruction:
+
+	.data
+abs_:	.asciiz "Testing ABS\n"
+	.text
+	li $v0 4	# syscall 4 (print_str)
+	la $a0 abs_
+	syscall
+
+	li $8 5
+	abs $9 $8
+	bne $9 5 fail
+	nop
+	li $8 -5
+	abs $9 $8
+	bne $9 5 fail
+	nop
+
+
+# Test DIV pseduo instruction:
+
+	.data
+div_:	.asciiz "Testing DIV\n"
+	.text
+	li $v0 4	# syscall 4 (print_str)
+	la $a0 div_
+	syscall
+
+	li $8 5
+	li $9 7
+	div $10 $9 $8
+	bne $10 1 fail
+	nop
+
+
+# Test MUL pseduo instruction:
+
+	.data
+mul_:	.asciiz "Testing MUL\n"
+	.text
+	li $v0 4	# syscall 4 (print_str)
+	la $a0 mul_
+	syscall
+
+	li $8 5
+	li $9 7
+	mul $10 $9 $8
+	bne $10 35 fail
+	nop
+	li $8 0x80000000
+	li $9 0x80000000
+	mul $10 $9 $8
+	bne $10 0 fail
+	nop
+	li $8 0x80000001
+	li $9 0x80000001
+	mul $10 $9 $8
+	bne $10 1 fail
+	nop
+
+
+# Test SLE pseduo instruction:
+
+	.data
+sle_:	.asciiz "Testing SLE\n"
+	.text
+	li $v0 4	# syscall 4 (print_str)
+	la $a0 sle_
+	syscall
+
+	li $8 5
+	li $9 7
+	sle $10 $9 $8
+	bne $10 0 fail
+	nop
+	li $8 7
+	li $9 5
+	sle $10 $9 $8
+	bne $10 1 fail
+	nop
+	li $8 7
+	sle $10 $8 $8
+	bne $10 1 fail
+	nop
+
+
+# Test SGE pseduo instruction:
+
+	.data
+sge_:	.asciiz "Testing SGE\n"
+	.text
+	li $v0 4	# syscall 4 (print_str)
+	la $a0 sge_
+	syscall
+
+	li $8 5
+	li $9 7
+	sge $10 $9 $8
+	bne $10 1 fail
+	nop
+	li $8 7
+	li $9 5
+	sge $10 $9 $8
+	bne $10 0 fail
+	nop
+	li $8 7
+	sge $10 $8 $8
+	bne $10 1 fail
+	nop
+
+
+# Test SEQ pseduo instruction:
+
+	.data
+seq_:	.asciiz "Testing SEQ\n"
+	.text
+	li $v0 4	# syscall 4 (print_str)
+	la $a0 seq_
+	syscall
+
+	li $8 5
+	li $9 7
+	seq $10 $9 $8
+	bne $10 0 fail
+	nop
+	li $8 7
+	sge $10 $8 $8
+	bne $10 1 fail
 	nop
 
 
