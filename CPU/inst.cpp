@@ -82,9 +82,10 @@ static mem_addr next_text_pc;
 
 static mem_addr next_k_text_pc;
 
+static bool enable_text_auto_alignment = true; /* => align literal to natural bound */
+
 
 #define INST_PC (in_kernel ? next_k_text_pc : next_text_pc)
-
 
 
 /* Set ADDRESS at which the next instruction is stored. */
@@ -93,6 +94,8 @@ void
 text_begins_at_point (mem_addr addr)
 {
   next_text_pc = addr;
+  in_kernel = false;
+  enable_text_auto_alignment = true;
 }
 
 
@@ -100,6 +103,44 @@ void
 k_text_begins_at_point (mem_addr addr)
 {
   next_k_text_pc = addr;
+  in_kernel = false;
+  enable_text_auto_alignment = true;
+}
+
+/* Arrange that the next instruction is stored on a memory boundary with its
+   low ALIGNMENT bits equal to 0.  If argument is 0, disable automatic
+   alignment.*/
+
+void
+align_text (int alignment)
+{
+  if (alignment == 0)
+    enable_text_auto_alignment = false;
+  else if (in_kernel)
+    {
+      next_k_text_pc = (next_k_text_pc + (1 << alignment) - 1) & (-1 << alignment);
+      fix_current_label_address (next_k_text_pc);
+    }
+  else
+    {
+      next_text_pc = (next_text_pc + (1 << alignment) - 1) & (-1 << alignment);
+      fix_current_label_address (next_text_pc);
+    }
+}
+
+
+void
+set_text_alignment (int alignment)
+{
+  if (enable_text_auto_alignment)
+    align_text (alignment);
+}
+
+
+void
+enable_text_alignment ()
+{
+  enable_text_auto_alignment = true;
 }
 
 

@@ -2105,7 +2105,10 @@ ASM_DIRECTIVE:	Y_ALIAS_DIR	Y_REG	Y_REG
 
 	|	Y_ALIGN_DIR	EXPR
 		{
-		  align_data ($2.i);
+		  if (text_dir)
+		    align_text ($2.i);
+		  else
+		    align_data ($2.i);
 		}
 
 	|	Y_ASCII_DIR {null_term = false;}	STR_LST
@@ -2164,14 +2167,14 @@ ASM_DIRECTIVE:	Y_ALIAS_DIR	Y_REG	Y_REG
 
 	|	Y_K_DATA_DIR
 		{
-                    user_kernel_data_segment (true);
+          user_kernel_data_segment (true);
 		  data_dir = true; text_dir = false;
 		  enable_data_alignment ();
 		}
 
 	|	Y_K_DATA_DIR	Y_INT
 		{
-                    user_kernel_data_segment (true);
+          user_kernel_data_segment (true);
 		  data_dir = true; text_dir = false;
 		  enable_data_alignment ();
 		  set_data_pc ($2.i);
@@ -2345,14 +2348,14 @@ ASM_DIRECTIVE:	Y_ALIAS_DIR	Y_REG	Y_REG
 		{
 		  user_kernel_text_segment (false);
 		  data_dir = false; text_dir = true;
-		  enable_data_alignment ();
+		  enable_text_alignment ();
 		}
 
 	|	Y_TEXT_DIR	Y_INT
 		{
 		  user_kernel_text_segment (false);
 		  data_dir = false; text_dir = true;
-		  enable_data_alignment ();
+		  enable_text_alignment ();
 		  set_text_pc ($2.i);
 		}
 
@@ -2361,14 +2364,14 @@ ASM_DIRECTIVE:	Y_ALIAS_DIR	Y_REG	Y_REG
 		{
 		  user_kernel_text_segment (true);
 		  data_dir = false; text_dir = true;
-		  enable_data_alignment ();
+		  enable_text_alignment ();
 		}
 
 	|	Y_K_TEXT_DIR	Y_INT
 		{
 		  user_kernel_text_segment (true);
 		  data_dir = false; text_dir = true;
-		  enable_data_alignment ();
+		  enable_text_alignment ();
 		  set_text_pc ($2.i);
 		}
 

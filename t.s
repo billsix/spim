@@ -1,33 +1,51 @@
+main:
+    la $a0, main
+    li $v0, 1
+    syscall
+    li $a0, '\n'
+    la $v0, 11
+    syscall
+
+    la $a0, text_data
+    li $v0, 1
+    syscall
+    li $a0, '\n'
+    la $v0, 11
+    syscall
+    la $a0, text_data_end
+    li $v0, 1
+    syscall
+    li $a0, '\n'
+    la $v0, 11
+    syscall
 
 
-        .data
-msg:   .asciiz "Enter the value"
-	.extern foobar 4
+    la $a0, align_text_data
+    li $v0, 1
+    syscall
+    li $a0, '\n'
+    la $v0, 11
+    syscall
+    la $a0, align_text_data_end
+    li $v0, 1
+    syscall
+    li $a0, '\n'
+    la $v0, 11
+    syscall
 
-        .text
-        .globl main
-main:   
-        li $v0, 4
-        la $a0, msg
-        syscall
+exit:
+    li $v0, 0
+    jr $ra
 
-        li $v0, 5
-        syscall
-        move $s0, $v0
+  .word 1001
+text_data:
+  .space 4096
+text_data_end:
+  .word 1002
 
-        li $v0, 1
-        move $a0, $s0
-        syscall
-
-        li $v0, 10
-        syscall
-
-
-
-
-li $v0, 4       # syscall 4 (print_str)
-        la $a0, msg     # argument: string
-        syscall         # print the string
-        lw $t1, foobar
-        
-        jr $ra          # retrun to caller
+  .word 1003
+align_text_data:
+  .align 2
+  .space 4096
+align_text_data_end:
+  .word 1004

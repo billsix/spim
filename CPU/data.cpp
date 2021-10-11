@@ -58,7 +58,7 @@ static bool in_kernel = 0;	/* => data goes to kdata, not data */
 
 static mem_addr next_gp_item_addr; /* Address of next item accessed off $gp */
 
-static bool auto_alignment = true; /* => align literal to natural bound*/
+static bool enable_data_auto_alignment = true; /* => align literal to natural bound */
 
 
 
@@ -77,7 +77,7 @@ void
 end_of_assembly_file ()
 {
   in_kernel = false;
-  auto_alignment = true;
+  enable_data_auto_alignment = true;
 }
 
 
@@ -118,11 +118,10 @@ void
 align_data (int alignment)
 {
   if (alignment == 0)
-    auto_alignment = false;
+    enable_data_auto_alignment = false;
   else if (in_kernel)
     {
-      next_k_data_pc =
-	(next_k_data_pc + (1 << alignment) - 1) & (-1 << alignment);
+      next_k_data_pc = (next_k_data_pc + (1 << alignment) - 1) & (-1 << alignment);
       fix_current_label_address (next_k_data_pc);
     }
   else
@@ -136,7 +135,7 @@ align_data (int alignment)
 void
 set_data_alignment (int alignment)
 {
-  if (auto_alignment)
+  if (enable_data_auto_alignment)
     align_data (alignment);
 }
 
@@ -144,7 +143,7 @@ set_data_alignment (int alignment)
 void
 enable_data_alignment ()
 {
-  auto_alignment = true;
+  enable_data_auto_alignment = true;
 }
 
 
