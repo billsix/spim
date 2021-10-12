@@ -149,6 +149,13 @@ test:	spim
 	@echo
 	@echo
 
+	@echo
+	@echo "Testing tt.dir.s:"
+	$(CSH) -c "./spim -ef $(CPU_DIR)/exceptions.s -file $(TEST_DIR)/tt.dir.s  >& test.out"
+	@tail -2 test.out
+	@echo
+	@echo
+
 # This test currently only works for little-endian machines.  The file
 # tt.alu.bare.s needs to be converted in places for big-endian machines.
 
@@ -160,7 +167,7 @@ test_bare: spim
 	@echo
 
 	@echo
-	@echo "Testing tt.fpt.bare.s:"
+	@echo "Testing tt.fpu.bare.s:"
 	$(CSH) -c "./spim -bare -noexception -file $(TEST_DIR)/tt.fpu.bare.s >& test.out"
 	@tail -2 test.out
 	@echo
