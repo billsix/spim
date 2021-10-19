@@ -1,7 +1,7 @@
 /* SPIM S20 MIPS simulator.
    Execute SPIM instructions.
 
-   Copyright (c) 1990-2010, James R. Larus.
+   Copyright (c) 1990-2021, James R. Larus.
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without modification,
@@ -33,4 +33,4 @@
 
 /* Exported functions: */
 
-bool run_spim (mem_addr initial_PC, register int steps, bool display);
+bool run_spim (mem_addr initial_PC, int steps, bool display);

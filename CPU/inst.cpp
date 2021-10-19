@@ -1,7 +1,7 @@
 /* SPIM S20 MIPS simulator.
    Code to build assembly instructions and resolve symbolic labels.
 
-   Copyright (c) 1990-2020, James R. Larus.
+   Copyright (c) 1990-2021, James R. Larus.
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without modification,
@@ -118,12 +118,12 @@ align_text (int alignment)
     enable_text_auto_alignment = false;
   else if (in_kernel)
     {
-      next_k_text_pc = (next_k_text_pc + (1 << alignment) - 1) & (-1 << alignment);
+      next_k_text_pc = (next_k_text_pc + (1 << alignment) - 1) & (0xffffffff << alignment);
       fix_current_label_address (next_k_text_pc);
     }
   else
     {
-      next_text_pc = (next_text_pc + (1 << alignment) - 1) & (-1 << alignment);
+      next_text_pc = (next_text_pc + (1 << alignment) - 1) & (0xffffffff << alignment);
       fix_current_label_address (next_text_pc);
     }
 }

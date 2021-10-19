@@ -1,3 +1,17 @@
+2021-10-19  Larus  <larus@Jim-Macbook-Air>
+
+	* data.cpp, inst.cpp, run.h:
+	Eliminate compiler warnings.
+	
+2021-10-11  Larus  <larus@Jim-Macbook-Air>
+
+	* data.cpp, inst.cpp, parser.y [https://sourceforge.net/p/spimsimulator/bugs/100/]:
+	Fix .align directive
+
+2021-09-20  Larus  <larus@Jim-Macbook-Air>
+
+	* Update test case.
+
 2020-12-19  Larus  <larus@Jim-Macbook-Air>
 
 	* CPU/parser.y Tests/tt.bare.s [https://sourceforge.net/p/spimsimulator/bugs/99/]:

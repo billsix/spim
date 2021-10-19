@@ -1,7 +1,7 @@
 /* SPIM S20 MIPS simulator.
    Code to manipulate data segment directives.
 
-   Copyright (c) 1990-2010, James R. Larus.
+   Copyright (c) 1990-2021, James R. Larus.
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without modification,
@@ -121,12 +121,12 @@ align_data (int alignment)
     enable_data_auto_alignment = false;
   else if (in_kernel)
     {
-      next_k_data_pc = (next_k_data_pc + (1 << alignment) - 1) & (-1 << alignment);
+      next_k_data_pc = (next_k_data_pc + (1 << alignment) - 1) & (0xffffffff << alignment);
       fix_current_label_address (next_k_data_pc);
     }
   else
     {
-      next_data_pc = (next_data_pc + (1 << alignment) - 1) & (-1 << alignment);
+      next_data_pc = (next_data_pc + (1 << alignment) - 1) & (0xffffffff << alignment);
       fix_current_label_address (next_data_pc);
     }
 }
