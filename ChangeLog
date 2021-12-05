@@ -1,3 +1,17 @@
+2021-12-04  Larus  <larus@Jim-Macbook-Air>
+
+	* Release: 9.1.23
+
+	* QtSpim/macinfo.plist
+	[https://sourceforge.net/p/spimsimulator/bugs/87/]:
+	Fix version number for MacOS Finder.
+
+	* README, README.rtf
+	Note that QtSpim does not compile with QT version 6.
+
+	* QtSpim_Mac.pkgproj, release-osx:
+	Fix paths for Qt5.
+	
 2021-10-19  Larus  <larus@Jim-Macbook-Air>
 
 	* data.cpp, inst.cpp, run.h:

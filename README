@@ -3,7 +3,7 @@
 
 This directory contains SPIM--an assembly language MIPS32 simulator.
 
-SPIM is Copyright (c) 1990-2020, by James R. Larus.
+SPIM is Copyright (c) 1990-2021, by James R. Larus.
 All rights reserved.
 
 SPIM is distributed under a BSD license:
@@ -90,7 +90,8 @@ Windows or native version on Linux and OS X.
 1. Download the free (open source) version of Qt Creator from http://qt.io. This is a
 large download that might take a while.  I have been using version 5.5, though any of the
 version 5.x should work fine. The 4.x releases will cause problems because of incompatible
-changes to the libraries.
+changes to the libraries. The 6.x releases also do not compiler out-of-the-box  because
+of backwardly incompatible changes in version 6.
 
         The open source version of Qt Creator for Windows, which uses mingw, works fine,
         as does the version that uses Microsoft Visual Studio's C++ compiler.

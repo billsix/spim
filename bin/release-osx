@@ -14,7 +14,7 @@ HELP_FILES="qtspim.*"
 
 BUILD_DIR="build-QtSpim-Qt-Release"
 RELEASE_DIR="build_Release"
-QT_BIN_DIR="/usr/local/opt/qt/bin"
+QT_BIN_DIR="/usr/local/opt/qt5/bin"
 
 rm -fr $RELEASE_DIR
 mkdir $RELEASE_DIR
