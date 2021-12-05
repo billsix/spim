@@ -1,3 +1,11 @@
+2021-12-05  larus  <larus@ubuntu>
+
+	* QtSpim.pro
+	Work around pointless error message from gnutils mv.
+
+	* bin/release-debian
+	Update paths
+
 2021-12-05  U-DESKTOP-OQE31KH\Larus  <Larus@DESKTOP-OQE31KH>
 
 	* bin/release-win:

@@ -8,7 +8,7 @@
 #
 
 #Qt v.*:
-RELEASE_DIR=build-QtSpim-Qt-Release
+RELEASE_DIR=build-QtSpim
 SETUP_DIR=Setup/debian
 
 ARCH=`arch`

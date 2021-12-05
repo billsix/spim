@@ -211,6 +211,11 @@ linux-g++ {
   #
   QMAKE_DEL_FILE = rm -f
 
+  # This seems really stupid, but the only place that MOVE is invoked is to move parser_yacc.h on
+  # to itself, which fails with gnuutils, since they raises an error if you try to mv (or cp) a
+  # file onto itself. Pretty pointless, and no way to turn it off...
+  QMAKE_MOVE = touch
+
   # Do not add -lGL, since this requires installation of OpenCL libraries,
   # which are already installed with QtCreator.
   QMAKE_LIBS_OPENGL = 
