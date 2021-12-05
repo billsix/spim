@@ -3,7 +3,7 @@
   <Product Name='QtSpim' Manufacturer='LarusStone'
            Id='bf588941-3a73-421f-a619-cdabff1acbc7'
            UpgradeCode='acf14497-9bbe-4d3d-b0b2-7b599eb18984'
-           Language='1033' Codepage='1252' Version='9.1.20'>
+           Language='1033' Codepage='1252' Version='9.1.23'>
     <Package Id='*' Keywords='Installer' Description='QtSpim Installer'
              Comments='Copyright by James R. Larus. All rights reserved.'
              Manufacturer='LarusStone' InstallerVersion='100' Languages='1033'

@@ -1,3 +1,12 @@
+2021-12-05  U-DESKTOP-OQE31KH\Larus  <Larus@DESKTOP-OQE31KH>
+
+	* bin/release-win:
+	Fix paths for QT 5.
+
+	* QtSpim.pro:
+	Fixed mismatched parser file names and eliminated cached copies of parser and scanner.
+	Use Linux sh to move files, not cmd.
+
 2021-12-04  Larus  <larus@Jim-Macbook-Air>
 
 	* Release: 9.1.23

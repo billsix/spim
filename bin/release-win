@@ -7,11 +7,12 @@
 
 RELEASE_DIR="build_Release"
 
-QT_DIR="C:/Qt/5.14.0/mingw73_64"
-QT_BIN_DIR=$QT_DIR/bin
-QT_PLUGIN_DIR=$QT_DIR/plugins
+QT_DIR="C:/Qt/"
+QT_MINGW=$QT_DIR/5.15.2/mingw81_64
+QT_BIN_DIR=$QT_MINGW/bin
+QT_PLUGIN_DIR=$QT_MINGW/plugins
 
-MINGW_LIB="C:/Qt/Tools/mingw730_64/x86*/lib"
+MINGW_LIB=$QT_DIR/Tools/mingw810_64/x86_64-w64-mingw32/lib
 
 WIX_DIR="Setup/QtSpim_Win_Deployment/WiX"
 CACHE_DIR=$WIX_DIR/cache
@@ -19,7 +20,7 @@ CACHE_DIR=$WIX_DIR/cache
 rm -fr $CACHE_DIR
 mkdir $CACHE_DIR
 
-cp -p $RELEASE_DIR/QtSpim.exe $CACHE_DIR
+cp -p $RELEASE_DIR/release/QtSpim.exe $CACHE_DIR
 cp -p $QT_BIN_DIR/assistant.exe $CACHE_DIR
 
 cp -pr $RELEASE_DIR/help $CACHE_DIR
