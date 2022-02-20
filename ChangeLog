@@ -1,3 +1,9 @@
+2022-02-20  James Larus  <larus@Jim-Macbook-Max.local>
+
+	* spim/spim.cpp
+	[https://sourceforge.net/p/spimsimulator/bugs/102/:
+	Helpstring for -assemble option to spim was incorrect.
+
 2021-12-06  Larus  <larus@Jim-Macbook-Air>
 
 	* Release: 9.1.23

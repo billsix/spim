@@ -112,7 +112,7 @@ bool delayed_branches;		/* => simulate delayed branches */
 bool delayed_loads;		/* => simulate delayed loads */
 bool accept_pseudo_insts;	/* => parse pseudo instructions  */
 bool quiet;			/* => no warning messages */
-bool assemble;			/* => assemble, write to stdout and exit */
+bool assemble;			/* => assemble, disassemble to file and exit */
 char *exception_file_name = DEFAULT_EXCEPTION_HANDLER;
 port message_out, console_out, console_in;
 bool mapped_io;			/* => activate memory-mapped IO */
@@ -276,10 +276,9 @@ main (int argc, char **argv)
           initialize_run_stack (program_argc, program_argv);
 	    }
 	  assembly_file_loaded = read_assembly_file (argv[++i]) || assembly_file_loaded;
-	  break;
 	}
       else if (streq (argv [i], "-assemble"))
-	{ assemble = true; }
+	      { assemble = true; }
       else if (streq (argv [i], "-dump"))
         { dump_user_segments = true; }
       else if (streq (argv [i], "-full_dump"))
@@ -306,7 +305,7 @@ main (int argc, char **argv)
 	-mapped_io		Enable memory-mapped IO\n\
 	-nomapped_io		Do not enable memory-mapped IO (default)\n\
 	-file <file> <args>	Assembly code file and arguments to program\n\
-	-assemble		Write assembled code to standard output\n\
+	-assemble		Write assembled code to <file>.out\n\
 	-dump			Write user data and text segments into files\n\
 	-full_dump		Write user and kernel data and text into files.\n");
     }
