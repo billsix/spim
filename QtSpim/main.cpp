@@ -1,7 +1,7 @@
 /* SPIM S20 MIPS simulator.
    Terminal interface for SPIM simulator.
 
-   Copyright (c) 1990-2010, James R. Larus.
+   Copyright (c) 1990-2022, James R. Larus.
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without modification,
@@ -44,6 +44,7 @@ QApplication* App;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    setlocale(LC_NUMERIC, "C"); // Qt Linux has wrong default https://doc.qt.io/qt-5/qcoreapplication.html#locale-settings
     QCoreApplication::setOrganizationName("LarusStone");
     QCoreApplication::setOrganizationDomain("larusstone.org");
     QCoreApplication::setApplicationName("QtSpim");

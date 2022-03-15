@@ -1,3 +1,8 @@
+2022-03-15  James Larus  <larus@Jim-Macbook-Max.local>
+
+	* QtSpim/main.cpp [https://sourceforge.net/p/spimsimulator/bugs/103/]:
+	Fix incorrect LOCALE on Linux.
+
 2022-02-20  James Larus  <larus@Jim-Macbook-Max.local>
 
 	* spim/spim.cpp
