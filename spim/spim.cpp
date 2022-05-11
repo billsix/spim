@@ -1,7 +1,7 @@
 /* SPIM S20 MIPS simulator.
    Terminal interface for SPIM simulator.
 
-   Copyright (c) 1990-2015, James R. Larus.
+   Copyright (c) 1990-2022, James R. Larus.
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without modification,
@@ -263,19 +263,21 @@ main (int argc, char **argv)
       else if (((streq (argv [i], "-file")
                  || streq (argv [i], "-f"))
                 && (i + 1 < argc))
-               /* Assume this argument is a file name and everything following are
-                  arguments for program */
+               /* Assume this argument is a program's file name and everything following are
+                  arguments to the program */
                || (argv [i][0] != '-'))
 	{
-	  program_argc = argc - (i + 1);
-	  program_argv = &argv[i + 1]; /* Everything following is argv */
+      int program_i = (argv [i][0] == '-') ? (i + 1) : i;
+	  program_argc = argc - program_i;
+	  program_argv = &argv[program_i];
 
-	  if (!assembly_file_loaded)
+	  if (!assembly_file_loaded)  /* Only load one file */
 	    {
           initialize_world (load_exception_handler ? exception_file_name : NULL, !quiet);
           initialize_run_stack (program_argc, program_argv);
+          assembly_file_loaded = read_assembly_file (argv[program_i]);
 	    }
-	  assembly_file_loaded = read_assembly_file (argv[++i]) || assembly_file_loaded;
+      i = program_i;
 	}
       else if (streq (argv [i], "-assemble"))
 	      { assemble = true; }

@@ -1,3 +1,8 @@
+2022-05-11  James Larus  <larus@icdhcp-1-244.epfl.ch>
+
+	* spim/spim.cpp (main) [https://sourceforge.net/p/spimsimulator/bugs/104/]:
+	spim did not properly parse command line arguments to assembly program.
+
 2022-03-15  James Larus  <larus@Jim-Macbook-Max.local>
 
 	* QtSpim/main.cpp [https://sourceforge.net/p/spimsimulator/bugs/103/]:
