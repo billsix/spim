@@ -31,15 +31,24 @@
    OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include <stdbool.h>
 
 #include "spim.h"
+
 #include "string-stream.h"
+
 #include "spim-utils.h"
+
 #include "inst.h"
+
 #include "reg.h"
+
 #include "sym-tbl.h"
+
 #include "parser.h"
+
 #include "scanner.h"
+
 #include "parser_yacc.h"
 
 #ifdef _WIN32

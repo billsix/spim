@@ -437,17 +437,28 @@
 %token Y_WORD_DIR
 
 %{
+#include <stdbool.h>
+
 #include <stdio.h>
 
 #include "spim.h"
+
 #include "string-stream.h"
+
 #include "spim-utils.h"
+
 #include "inst.h"
+
 #include "reg.h"
+
 #include "mem.h"
+
 #include "sym-tbl.h"
+
 #include "data.h"
+
 #include "scanner.h"
+
 #include "parser.h"
 
 

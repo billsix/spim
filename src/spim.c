@@ -30,6 +30,9 @@
    OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include <stdbool.h>
+
+#include "config.h"
 
 #ifndef WIN32
 #include <unistd.h>
@@ -1220,8 +1223,8 @@ read_token ()
 }
 
 
-/* 
- * Writes the contents of the (user and optionally kernel) data segment into data.asm file. 
+/*
+ * Writes the contents of the (user and optionally kernel) data segment into data.asm file.
  * If data.asm already exists, it's replaced.
  */
 
@@ -1231,7 +1234,7 @@ dump_data_seg(bool kernel_also)
   static str_stream ss;
   ss_clear (&ss);
 
-  if (kernel_also) 
+  if (kernel_also)
     {
       format_data_segs (&ss);
     }
@@ -1240,7 +1243,7 @@ dump_data_seg(bool kernel_also)
       ss_printf (&ss, "\tDATA\n");
       format_mem (&ss, DATA_BOT, data_top);
     }
-  
+
   FILE *fp;
   fp = fopen ("data.asm", "w");
   fprintf (fp, "%s", ss_to_string (&ss));
@@ -1248,8 +1251,8 @@ dump_data_seg(bool kernel_also)
 }
 
 
-/* 
- * Writes the contents of the (user and optionally kernel) text segment in text.asm file. 
+/*
+ * Writes the contents of the (user and optionally kernel) text segment in text.asm file.
  * If data.asm already exists, it's replaced.
  */
 
@@ -1270,7 +1273,7 @@ dump_text_seg(bool kernel_also)
       ss_printf (&ss, "\n\tUSER TEXT SEGMENT\n");
       format_insts (&ss, TEXT_BOT, text_top);
     }
-  
+
   FILE *fp;
   fp = fopen ("text.asm", "w");
   fprintf (fp, "%s", ss_to_string (&ss));
