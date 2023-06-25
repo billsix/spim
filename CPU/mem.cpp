@@ -513,45 +513,50 @@ bad_mem_write (mem_addr addr, mem_word value, int mask)
     RAISE_EXCEPTION (ExcCode_AdES, CP0_BadVAddr = addr)
     else if (addr >= TEXT_BOT && addr < text_top)
   {
-    switch (mask)
-    {
-    case 0x0:
-      tmp = ENCODING (text_seg [(addr - TEXT_BOT) >> 2]);
-#ifdef SPIM_BIGENDIAN
-      tmp = ((tmp & ~(0xff << (8 * (3 - (addr & 0x3)))))
-	       | (value & 0xff) << (8 * (3 - (addr & 0x3))));
-#else
-      tmp = ((tmp & ~(0xff << (8 * (addr & 0x3))))
-	       | (value & 0xff) << (8 * (addr & 0x3)));
-#endif
-      break;
+		if (text_seg [(addr - TEXT_BOT) >> 2] == NULL)
+		{
+			/* No instruction at address. Only create instruction from
+				 full-word write. */
+			tmp = (mask == 3) ? value : 0;
+		}
+		else
+		{
+			switch (mask)
+			{
+			case 0x0:
+				tmp = ENCODING (text_seg [(addr - TEXT_BOT) >> 2]);
+	#ifdef SPIM_BIGENDIAN
+				tmp = ((tmp & ~(0xff << (8 * (3 - (addr & 0x3)))))
+					| (value & 0xff) << (8 * (3 - (addr & 0x3))));
+	#else
+				tmp = ((tmp & ~(0xff << (8 * (addr & 0x3))))
+					| (value & 0xff) << (8 * (addr & 0x3)));
+	#endif
+				break;
 
-    case 0x1:
-      tmp = ENCODING (text_seg [(addr - TEXT_BOT) >> 2]);
-#ifdef SPIM_BIGENDIAN
-      tmp = ((tmp & ~(0xffff << (8 * (2 - (addr & 0x2)))))
-	       | (value & 0xffff) << (8 * (2 - (addr & 0x2))));
-#else
-      tmp = ((tmp & ~(0xffff << (8 * (addr & 0x2))))
-	       | (value & 0xffff) << (8 * (addr & 0x2)));
-#endif
-      break;
+			case 0x1:
+				tmp = ENCODING (text_seg [(addr - TEXT_BOT) >> 2]);
+	#ifdef SPIM_BIGENDIAN
+				tmp = ((tmp & ~(0xffff << (8 * (2 - (addr & 0x2)))))
+					| (value & 0xffff) << (8 * (2 - (addr & 0x2))));
+	#else
+				tmp = ((tmp & ~(0xffff << (8 * (addr & 0x2))))
+					| (value & 0xffff) << (8 * (addr & 0x2)));
+	#endif
+				break;
 
-    case 0x3:
-      tmp = value;
-      break;
+			case 0x3:
+				tmp = value;
+				break;
 
-    default:
-      tmp = 0;
-      run_error ("Bad mask (0x%x) in bad_mem_read\n", mask);
-    }
+			default:
+				tmp = 0;
+				run_error ("Bad mask (0x%x) in bad_mem_read\n", mask);
+			}
+			free_inst (text_seg[(addr - TEXT_BOT) >> 2]);
+		}
 
-    if (text_seg [(addr - TEXT_BOT) >> 2] != NULL)
-    {
-      free_inst (text_seg[(addr - TEXT_BOT) >> 2]);
-    }
     text_seg [(addr - TEXT_BOT) >> 2] = inst_decode (tmp);
-
     text_modified = true;
   }
   else if (addr > data_top
