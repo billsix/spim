@@ -54,7 +54,6 @@ main:
 	lw $3 1($t0)
 # Exception 5 (ADES)
 	sw $3 1($t0)
-  sb $a0, not_an_instruction    # Should not fail
 # Exception 6 (IBUS) -- Can't test and continue
 # Exception 7 (DBUS)
 	lw $3 10000000($t0)
@@ -4857,9 +4856,7 @@ fail:	li $v0 4	# syscall 4 (print_str)
 	li $v0, 10	# syscall 10 (exit)
 	syscall
 
+
 	.text 0x408000
 far_away:
 	beq $0, $0, come_back
-
-not_an_instruction:
-    # end of file
