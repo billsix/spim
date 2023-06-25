@@ -41,7 +41,12 @@
 #include <ctype.h>
 #include <setjmp.h>
 #include <signal.h>
-#include <arpa/inet.h>
+#ifndef WIN32
+ include <arpa/inet.h>
+#else
+ #include <winsock.h>
+ #include <io.h>
+#endif
 
 
 #ifdef RS
@@ -50,7 +55,9 @@
 #endif
 
 #include <sys/types.h>
-#include <sys/select.h>
+#ifndef WIN32
+ #include <sys/select.h>
+#endif
 
 #ifdef _AIX
 #ifndef NBBY
@@ -128,10 +135,13 @@ int spim_return_value;		/* Value returned when spim exits */
 /* => load standard exception handler */
 static bool load_exception_handler = true;
 static int console_state_saved;
+
+#ifndef WIN32
 #ifdef NEED_TERMIOS
 static struct sgttyb saved_console_state;
 #else
 static struct termios saved_console_state;
+#endif
 #endif
 static int program_argc;
 static char** program_argv;
@@ -1122,6 +1132,7 @@ console_to_program ()
   if (mapped_io && !console_state_saved)
     {
 #ifdef NEED_TERMIOS
+ #ifdef NEED_TERMIOS
       int flags;
       ioctl ((int) console_in.i, TIOCGETP, (char *) &saved_console_state);
       flags = saved_console_state.sg_flags;
@@ -1147,6 +1158,7 @@ console_to_program ()
       tcsetattr (console_in.i, TCSANOW, &params);
 #endif
       console_state_saved = 1;
+#endif
     }
 }
 
@@ -1156,6 +1168,7 @@ console_to_program ()
 static void
 console_to_spim ()
 {
+#ifndef WIN32
   if (mapped_io && console_state_saved)
 #ifdef NEED_TERMIOS
     ioctl ((int) console_in.i, TIOCSETP, (char *) &saved_console_state);
@@ -1163,6 +1176,7 @@ console_to_spim ()
     tcsetattr (console_in.i, TCSANOW, &saved_console_state);
 #endif
   console_state_saved = 0;
+#endif
 }
 
 
