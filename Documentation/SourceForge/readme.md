@@ -18,4 +18,4 @@ This directory contains compiled, installable copies of Spim for various operati
 
 Note: * is the version number, e.g. 9.0.1
 
-The code in the repository may be ahead of the latest version. Since Spim is used in classes, I try not to change the install files during the semester, so all students will run the same program. If you want the latest version, go to the repository, download the source, and compile it yourself.
+The code in the repository may be ahead of the latest version. Since Spim is used in classes, I try not to change the downloadable files during the semester, so all students will run the same program. If you want the latest version, go to the repository, download the source, and compile it yourself.
