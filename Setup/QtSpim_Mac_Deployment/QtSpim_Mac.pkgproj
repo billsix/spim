@@ -565,7 +565,7 @@
 				<key>USE_HFS+_COMPRESSION</key>
 				<false/>
 				<key>VERSION</key>
-				<string>9.1.23</string>
+				<string>9.1.24</string>
 			</dict>
 			<key>TYPE</key>
 			<integer>0</integer>
@@ -662,6 +662,8 @@
 						<key>LIST</key>
 						<array>
 							<dict>
+								<key>CHILDREN</key>
+								<array/>
 								<key>DESCRIPTION</key>
 								<array/>
 								<key>OPTIONS</key>
@@ -674,8 +676,6 @@
 								<key>PACKAGE_UUID</key>
 								<string>240BDC96-9531-4E8F-924E-BB44DCAC62D8</string>
 								<key>TITLE</key>
-								<array/>
-								<key>TOOLTIP</key>
 								<array/>
 								<key>TYPE</key>
 								<integer>0</integer>
@@ -791,7 +791,7 @@
 						<key>LANGUAGE</key>
 						<string>English</string>
 						<key>VALUE</key>
-						<string>QtSpim_Mac</string>
+						<string>QtSpim</string>
 					</dict>
 				</array>
 			</dict>
@@ -1017,7 +1017,7 @@
 			<key>PAYLOAD_ONLY</key>
 			<false/>
 			<key>REFERENCE_FOLDER_PATH</key>
-			<string>/Users/larus/OneDrive/Software/spim-simulator</string>
+			<string>/Users/larus/Software/spim-simulator</string>
 			<key>TREAT_MISSING_PRESENTATION_DOCUMENTS_AS_WARNING</key>
 			<false/>
 		</dict>
