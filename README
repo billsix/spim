@@ -90,7 +90,7 @@ Windows or native version on Linux and OS X.
 1. Download the free (open source) version of Qt Creator from http://qt.io. This is a
 large download that might take a while.  I have been using version 5.5, though any of the
 version 5.x should work fine. The 4.x releases will cause problems because of incompatible
-changes to the libraries. The 6.x releases also do not compiler out-of-the-box  because
+changes to the libraries. The 6.x releases also do not compiler out-of-the-box because
 of backwardly incompatible changes in version 6.
 
         The open source version of Qt Creator for Windows, which uses mingw, works fine,
@@ -120,7 +120,7 @@ directory contains the files for all three platforms.
 
 	On Linux, the script bin/release-debian handles the entire process.
 
-On all three systems, the packaged version of QtSpim includes all of the libraries and
+On all three systems, the packaged version of QtSpim includes all the libraries and
 plugins used by QtSpim and assistant (the Qt help file viewer). Previously, the Linux used
 dependencies to bring in other packages that contained these libraries, but I cannot find
 the packages that contain all of these files for Qt5, so it is easier just to redistribute
@@ -207,7 +207,7 @@ It is necessary to build spim and xspim, as they are only distributed as source.
                                         BUILDING PCSPIM
                                         ===============
 
-It is not necessary to compile PCSpim (the Microsoft Windows version), as the Spim web site
+It is not necessary to compile PCSpim (the Microsoft Windows version), as the Spim website
 contains a precompiled version.
 
 The Microsoft Windows version of Spim is called PCSpim and is built using Microsoft Visual
@@ -221,7 +221,9 @@ Cygwin port of the GNU tools (see www.cygwin.com).
                                       NEW VERSIONS OF SPIM
                                       ===================
 
-I generally release new version of SPIM once a year, before a semester boundary (late August or
-early January).  The new version are available on:
+I used to release the new versions of SPIM once a year, before a semester boundary (late August or
+early January).  The new versions are available on:
 
         https://sourceforge.net/projects/spimsimulator/
+
+SPIM is no longer supported. The code has been stable for many years, with a few occasional bugs. But, as I reach retirement, it is clear to me that SPIM should retire as well. Feel free to fork a copy and fix the bugs yourself!
