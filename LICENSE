@@ -1,16 +1,9 @@
-spimulator is Copyright (c) 2021, by William Emerison Six, starting from git commit e10b97408f6d2c405c36ab05cdffbf40828970fd
-All rights reserved.
-
-
-Derived from SPIM
-
-SPIM is Copyright (c) 1990-2020, by James R. Larus.
+SPIM is Copyright (c) 1990-2023, by James R. Larus.
 All rights reserved.
 
 
 
-
-spimulator is distributed under a BSD license:
+spim is distributed under a BSD license:
 
      Redistribution and use in source and binary forms, with or without modification, are
      permitted provided that the following conditions are met:

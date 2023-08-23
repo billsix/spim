@@ -133,7 +133,7 @@ void initialize_world(char *exception_file_names, bool print_message) {
 
 void write_startup_message() {
   write_output(message_out, "SPIM %s\n", SPIM_VERSION);
-  write_output(message_out, "Copyright 1990-2021 by James Larus.\n");
+  write_output(message_out, "Copyright 1990-2023 by James Larus.\n");
   write_output(message_out, "All Rights Reserved.\n");
   write_output(message_out, "SPIM is distributed under a BSD license.\n");
   write_output(message_out,
