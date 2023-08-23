@@ -1,9 +1,7 @@
 SPIM is Copyright (c) 1990-2023, by James R. Larus.
 All rights reserved.
 
-
-
-spim is distributed under a BSD license:
+SPIM is distributed under a BSD license:
 
      Redistribution and use in source and binary forms, with or without modification, are
      permitted provided that the following conditions are met:
@@ -28,3 +26,7 @@ spim is distributed under a BSD license:
      HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
      TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
      SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+
+Changes Copyright (c) 2021-2023, by William E. Six, under the same BSD license
