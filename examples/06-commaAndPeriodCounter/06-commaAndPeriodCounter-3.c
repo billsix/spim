@@ -81,30 +81,30 @@ int main(int argc, char *argv[]) {
 
   // set comma count
   {
-    int32_t comma_count_in_register = 0;
+    int32_t comma_count_in_instruction = 0;
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_COMMA_COUNT,
-            /*src*/ &comma_count_in_register,
+            /*src*/ &comma_count_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
   // set stop count
   {
-    int32_t stop_count_in_register = 0;
+    int32_t stop_count_in_instruction = 0;
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_STOP_COUNT,
-            /*src*/ &stop_count_in_register,
+            /*src*/ &stop_count_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
   // set this_char
   {
-    int32_t this_char_in_register = 0;
+    int32_t this_char_in_instruction = 0;
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_THIS_CHAR,
-            /*src*/ &this_char_in_register,
+            /*src*/ &this_char_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
   // set return_code
   {
-    int32_t return_code_in_register = EXIT_SUCCESS;
+    int32_t return_code_in_instruction = EXIT_SUCCESS;
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE,
-            /*src*/ &return_code_in_register,
+            /*src*/ &return_code_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
 

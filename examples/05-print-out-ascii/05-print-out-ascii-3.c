@@ -72,13 +72,13 @@ int main(int argc, char *argv[]) {
   */
 
   {
-    int32_t c_in_register = CHAR_MIN;
+    int32_t c_in_instruction = CHAR_MIN;
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_C,
-            /*src*/ &c_in_register,
+            /*src*/ &c_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
-    int32_t return_code_in_register = 0;
+    int32_t return_code_in_instruction = 0;
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE,
-            /*src*/ &return_code_in_register,
+            /*src*/ &return_code_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
 

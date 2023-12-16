@@ -44,9 +44,9 @@ int main(int argc, char *argv[]) {
   //   struct main_stack_frame main_stack_frame = {.return_value =
   //   EXIT_SUCCESS};
   {
-    int return_value_in_register = EXIT_SUCCESS;
+    int return_value_in_instruction = EXIT_SUCCESS;
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE,
-            /*src*/ &return_value_in_register,
+            /*src*/ &return_value_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
 

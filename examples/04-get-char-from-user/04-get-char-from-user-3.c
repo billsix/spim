@@ -68,11 +68,11 @@ int main(int argc, char *argv[]) {
 
   //   struct main_stack_frame main_stack_frame = {.ch = 0, .return_code = 0};
   {
-    int32_t ch_in_register = 0;
+    int32_t ch_in_instruction = 0;
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_CH,
-            /*src*/ &ch_in_register,
+            /*src*/ &ch_in_instruction,
             /*numberOfBytes*/ SIZE_OF_BYTE);
-    int32_t return_code_in_register = 0;
+    int32_t return_code_in_instruction = 0;
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE,
             /*src*/ &return_code_in_register,
             /*numberOfBytes*/ SIZE_OF_INT32_T);

@@ -145,23 +145,23 @@ current_stack_frame = (void *)main_stack_frame;
   frame_pointer = frame_pointer - SIZE_OF_MAIN_STACK_FRAME;
   // set result 1
   {
-    int32_t result1_in_register = 0;
+    int32_t result1_in_instruction = 0;
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_RESULT_1,
-            /*src*/ &result1_in_register,
+            /*src*/ &result1_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
   // set result 2
   {
-    int32_t result2_in_register = 0;
+    int32_t result2_in_instruction = 0;
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_RESULT_2,
-            /*src*/ &result2_in_register,
+            /*src*/ &result2_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
   // set return value
   {
-    int32_t return_value_in_register = 0;
+    int32_t return_value_in_instruction = 0;
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE,
-            /*src*/ &return_value_in_register,
+            /*src*/ &return_value_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
 
@@ -182,23 +182,23 @@ current_stack_frame = (void *)main_stack_frame;
 
   // set m
   {
-    int32_t m_in_register = 1;
+    int32_t m_in_instruction = 1;
     xmemcpy(/*dest*/ stack_pointer + MXPLUSB_STACK_FRAME_OFFSET_TO_M,
-            /*src*/ &m_in_register,
+            /*src*/ &m_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
   // set x
   {
-    int32_t x_in_register = 2;
+    int32_t x_in_insrtruction = 2;
     xmemcpy(/*dest*/ stack_pointer + MXPLUSB_STACK_FRAME_OFFSET_TO_X,
-            /*src*/ &x_in_register,
+            /*src*/ &x_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
   // set b
   {
-    int32_t b_in_register = 3;
+    int32_t b_in_instruction = 3;
     xmemcpy(/*dest*/ stack_pointer + MXPLUSB_STACK_FRAME_OFFSET_TO_B,
-            /*src*/ &b_in_register,
+            /*src*/ &b_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
   // set address of return value
@@ -256,23 +256,23 @@ continueMainPt1:
 
   // set m
   {
-    int32_t m_in_register = 4;
+    int32_t m_in_instruction = 4;
     xmemcpy(/*dest*/ stack_pointer + MXPLUSB_STACK_FRAME_OFFSET_TO_M,
-            /*src*/ &m_in_register,
+            /*src*/ &m_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
   // set x
   {
-    int32_t x_in_register = 5;
+    int32_t x_in_instruction = 5;
     xmemcpy(/*dest*/ stack_pointer + MXPLUSB_STACK_FRAME_OFFSET_TO_X,
-            /*src*/ &x_in_register,
+            /*src*/ &x_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
   // set b
   {
-    int32_t b_in_register = 6;
+    int32_t b_in_instruction = 6;
     xmemcpy(/*dest*/ stack_pointer + MXPLUSB_STACK_FRAME_OFFSET_TO_B,
-            /*src*/ &b_in_register,
+            /*src*/ &b_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
   // set address of return value

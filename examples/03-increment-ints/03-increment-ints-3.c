@@ -69,15 +69,15 @@ int main(int argc, char *argv[]) {
 
   // main's stack frame
   {
-    int32_t a_in_register = 5;
+    int32_t a_in_instruction = 5;
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_A,
-            /*src*/ &a_in_register,
+            /*src*/ &a_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
-    int32_t b_in_register = 5;
+    int32_t b_in_instruction = 5;
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_B,
-            /*src*/ &b_in_register,
+            /*src*/ &b_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
-    int return_value_in_register = EXIT_SUCCESS;
+    int return_value_in_instruction = EXIT_SUCCESS;
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE,
             /*src*/ &return_value_in_register,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
