@@ -43,10 +43,10 @@
 #include <setjmp.h>
 #include <signal.h>
 #ifndef WIN32
- #include <arpa/inet.h>
+#include <arpa/inet.h>
 #else
- #include <winsock.h>
- #include <io.h>
+#include <winsock.h>
+#include <io.h>
 #endif
 
 #ifdef RS
@@ -56,7 +56,7 @@
 
 #include <sys/types.h>
 #ifndef WIN32
- #include <sys/select.h>
+#include <sys/select.h>
 #endif
 
 #ifdef _AIX
