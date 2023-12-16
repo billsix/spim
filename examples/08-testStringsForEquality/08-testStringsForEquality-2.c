@@ -13,7 +13,7 @@
 
 // https://publications.gbdirect.co.uk//c_book/copyright.html
 
-// Copyright (c) 2021 William Emerison Six
+// Copyright (c) 2021-2023 William Emerison Six
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -68,7 +68,6 @@ struct str_eq_stack_frame {
 };
 
 int main(int argc, char *argv[]) {
-
   void *current_stack_frame;
 
   goto main_label;
@@ -80,8 +79,7 @@ loopBegin:
   if (*current_str_eq_stack_frame.address_of_s1 !=
       *current_str_eq_stack_frame.address_of_s2)
     goto loopEnd;
-  if (*current_str_eq_stack_frame.address_of_s1 != 0)
-    goto incrementAndContinue;
+  if (*current_str_eq_stack_frame.address_of_s1 != 0) goto incrementAndContinue;
   *current_str_eq_stack_frame.address_of_value_to_return = false;
   goto str_eq_exit;
 incrementAndContinue:

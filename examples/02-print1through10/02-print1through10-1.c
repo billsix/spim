@@ -13,7 +13,7 @@
 
 // https://publications.gbdirect.co.uk//c_book/copyright.html
 
-// Copyright (c) 2021 William Emerison Six
+// Copyright (c) 2021-2023 William Emerison Six
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -47,7 +47,6 @@ int main(int argc, char *argv[]) {
   int32_t i = 0;
   /* check */
   while (i <= 10) {
-
     print_int(i);
     print_string("\n");
 

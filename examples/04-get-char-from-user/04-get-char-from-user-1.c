@@ -13,7 +13,7 @@
 
 // https://publications.gbdirect.co.uk//c_book/copyright.html
 
-// Copyright (c) 2021 William Emerison Six
+// Copyright (c) 2021-2023 William Emerison Six
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -47,14 +47,13 @@
 int main(int argc, char *argv[]) {
   char ch = read_char();
   while (ch != 'a') {
-    if (ch != '\n')
-      {
-        print_string("ch was ");
-        print_char(ch);
-        print_string(", value ");
-        print_int(ch);
-        print_string("\n");
-      }
+    if (ch != '\n') {
+      print_string("ch was ");
+      print_char(ch);
+      print_string(", value ");
+      print_int(ch);
+      print_string("\n");
+    }
     ch = read_char();
   }
   exit(EXIT_SUCCESS);

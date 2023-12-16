@@ -13,7 +13,7 @@
 
 // https://publications.gbdirect.co.uk//c_book/copyright.html
 
-// Copyright (c) 2021 William Emerison Six
+// Copyright (c) 2021-2023 William Emerison Six
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -59,7 +59,6 @@ int main(int argc, char *argv[]) {
   /* count of strings read */
   size_t nstrings = 0;
   while (nstrings < MAXSTRING && next_string(strings[nstrings]) != 0) {
-
     p_array[nstrings] = strings[nstrings];
     nstrings++;
   }
@@ -79,12 +78,9 @@ void print_arr(const char *p_array[]) {
 void sort_arr(const char *p_array[]) {
   for (size_t low_index = 0;
        p_array[low_index] != 0 && p_array[low_index + 1] != 0; low_index++) {
-
     for (size_t hi_index = low_index + 1; p_array[hi_index] != 0; hi_index++) {
-
       int32_t comp_val = strcmp(p_array[hi_index], p_array[low_index]);
-      if (comp_val >= 0)
-        continue;
+      if (comp_val >= 0) continue;
       /* swap strings */
       const char *tmp = p_array[hi_index];
       p_array[hi_index] = p_array[low_index];
@@ -97,11 +93,9 @@ char *next_string(char *destination) {
   char *cp = destination;
   char c;
   while ((c = getchar()) != '\n' && c != EOF) {
-    if (cp - destination < MAXLEN - 1)
-      *cp++ = c;
+    if (cp - destination < MAXLEN - 1) *cp++ = c;
   }
   *cp = 0;
-  if (c == EOF && cp == destination)
-    return 0;
+  if (c == EOF && cp == destination) return 0;
   return destination;
 }

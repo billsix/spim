@@ -1,4 +1,4 @@
-// Copyright (c) 2021 William Emerison Six
+// Copyright (c) 2021-2023 William Emerison Six
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@
 
 // define CPU
 #define x86_64_linux
-//#define spim
+// #define spim
 
 // define sizes based on the CPU
 #ifdef x86_64_linux
@@ -53,7 +53,6 @@ ADDRESS_OF_BYTE frame_pointer =
     (ADDRESS_OF_BYTE)(random_access_memory + RAM_SIZE);
 
 int main(int argc, char *argv[]) {
-
   // step 1
   //   replace all IO formatting operations with iolib operations, because
   //   they are easily ported to MIPS

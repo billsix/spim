@@ -13,7 +13,7 @@
 
 // https://publications.gbdirect.co.uk//c_book/copyright.html
 
-// Copyright (c) 2021 William Emerison Six
+// Copyright (c) 2021-2023 William Emerison Six
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -52,15 +52,14 @@ struct main_stack_frame {
 */
 
 #define MAIN_STACK_FRAME_OFFSET_TO_C 0
-#define MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE                                \
-  (MAIN_STACK_FRAME_OFFSET_TO_C +                                              \
-   SIZE_OF_INT32_T) // even though c is a byte, return code
-                    // must be aligned on a 32 bit boundary
-#define SIZE_OF_MAIN_STACK_FRAME                                               \
+#define MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE \
+  (MAIN_STACK_FRAME_OFFSET_TO_C +               \
+   SIZE_OF_INT32_T)  // even though c is a byte, return code
+                     // must be aligned on a 32 bit boundary
+#define SIZE_OF_MAIN_STACK_FRAME \
   (MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE + SIZE_OF_INT32_T)
 
 int main(int argc, char *argv[]) {
-
   // the frame pointer is the current stack frame, aka, where the local
   // variables are
   frame_pointer = frame_pointer - SIZE_OF_MAIN_STACK_FRAME;
@@ -112,8 +111,7 @@ loopBegin : {
     xmemcpy(/*dest*/ &c_in_register,
             /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_C,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
-    if (c_in_register != CHAR_MAX)
-      goto loopBegin;
+    if (c_in_register != CHAR_MAX) goto loopBegin;
   }
   {
     // return main_stack_frame.return_code;

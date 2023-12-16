@@ -1,4 +1,4 @@
-// Copyright (c) 2021 William Emerison Six
+// Copyright (c) 2021-2023 William Emerison Six
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -37,11 +37,11 @@ struct main_stack_frame {
 */
 
 #define MAIN_STACK_FRAME_OFFSET_TO_RESULT_1 0
-#define MAIN_STACK_FRAME_OFFSET_TO_RESULT_2                                    \
+#define MAIN_STACK_FRAME_OFFSET_TO_RESULT_2 \
   (MAIN_STACK_FRAME_OFFSET_TO_RESULT_1 + SIZE_OF_INT32_T)
-#define MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE                                \
+#define MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE \
   (MAIN_STACK_FRAME_OFFSET_TO_RESULT_2 + SIZE_OF_INT32_T)
-#define SIZE_OF_MAIN_STACK_FRAME                                               \
+#define SIZE_OF_MAIN_STACK_FRAME \
   (MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE + SIZE_OF_INT32_T)
 
 /*
@@ -58,28 +58,26 @@ struct mxPlusB_stack_frame {
 */
 
 #define MXPLUSB_STACK_FRAME_OFFSET_TO_M 0
-#define MXPLUSB_STACK_FRAME_OFFSET_TO_X                                        \
+#define MXPLUSB_STACK_FRAME_OFFSET_TO_X \
   (MXPLUSB_STACK_FRAME_OFFSET_TO_M + SIZE_OF_INT32_T)
-#define MXPLUSB_STACK_FRAME_OFFSET_TO_B                                        \
+#define MXPLUSB_STACK_FRAME_OFFSET_TO_B \
   (MXPLUSB_STACK_FRAME_OFFSET_TO_X + SIZE_OF_INT32_T)
-#define MXPLUSB_STACK_FRAME_OFFSET_TO_ADDRESS_OF_RETURN_VALUE                  \
+#define MXPLUSB_STACK_FRAME_OFFSET_TO_ADDRESS_OF_RETURN_VALUE \
   (MXPLUSB_STACK_FRAME_OFFSET_TO_B + SIZE_OF_INT32_T)
-#define MXPLUSB_STACK_FRAME_OFFSET_TO_ADDRESS_OF_RETURN_INSTRUCTION_OF_CALLER  \
-  (MXPLUSB_STACK_FRAME_OFFSET_TO_ADDRESS_OF_RETURN_VALUE +                     \
+#define MXPLUSB_STACK_FRAME_OFFSET_TO_ADDRESS_OF_RETURN_INSTRUCTION_OF_CALLER \
+  (MXPLUSB_STACK_FRAME_OFFSET_TO_ADDRESS_OF_RETURN_VALUE +                    \
    SIZE_OF_ADDRESS_OF_BYTE)
-#define MXPLUSB_STACK_FRAME_OFFSET_TO_ADDRESS_OF_STACK_FRAME_OF_CALLER         \
-  (MXPLUSB_STACK_FRAME_OFFSET_TO_ADDRESS_OF_RETURN_INSTRUCTION_OF_CALLER +     \
+#define MXPLUSB_STACK_FRAME_OFFSET_TO_ADDRESS_OF_STACK_FRAME_OF_CALLER     \
+  (MXPLUSB_STACK_FRAME_OFFSET_TO_ADDRESS_OF_RETURN_INSTRUCTION_OF_CALLER + \
    SIZE_OF_ADDRESS_OF_BYTE)
-#define SIZE_OF_MXPLUSB_STACK_FRAME                                            \
-  (MXPLUSB_STACK_FRAME_OFFSET_TO_ADDRESS_OF_STACK_FRAME_OF_CALLER +            \
+#define SIZE_OF_MXPLUSB_STACK_FRAME                                 \
+  (MXPLUSB_STACK_FRAME_OFFSET_TO_ADDRESS_OF_STACK_FRAME_OF_CALLER + \
    +SIZE_OF_ADDRESS_OF_BYTE)
 
 int main(int32_t argc, char *argv[]) {
-
   goto main_label;
 
 mxPlusBLabel : {
-
   // get m, x, and b, and calculate
   int32_t result_in_register;
   {
@@ -130,7 +128,6 @@ mxPlusBLabel : {
   }
 }
 main_label : {
-
   /*
 struct main_stack_frame msf = {
     .result1 = 0,

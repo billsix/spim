@@ -13,7 +13,7 @@
 
 // https://publications.gbdirect.co.uk//c_book/copyright.html
 
-// Copyright (c) 2021 William Emerison Six
+// Copyright (c) 2021-2023 William Emerison Six
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -54,17 +54,16 @@ struct main_stack_frame {
 */
 
 #define MAIN_STACK_FRAME_OFFSET_TO_COMMA_COUNT 0
-#define MAIN_STACK_FRAME_OFFSET_TO_STOP_COUNT                                  \
+#define MAIN_STACK_FRAME_OFFSET_TO_STOP_COUNT \
   (MAIN_STACK_FRAME_OFFSET_TO_COMMA_COUNT + SIZE_OF_INT32_T)
-#define MAIN_STACK_FRAME_OFFSET_TO_THIS_CHAR                                   \
+#define MAIN_STACK_FRAME_OFFSET_TO_THIS_CHAR \
   (MAIN_STACK_FRAME_OFFSET_TO_STOP_COUNT + SIZE_OF_INT32_T)
-#define MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE                                \
+#define MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE \
   (MAIN_STACK_FRAME_OFFSET_TO_THIS_CHAR + SIZE_OF_INT32_T)
-#define SIZE_OF_MAIN_STACK_FRAME                                               \
+#define SIZE_OF_MAIN_STACK_FRAME \
   (MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE + SIZE_OF_INT32_T)
 
 int main(int argc, char *argv[]) {
-
   // the frame pointer is the current stack frame, aka, where the local
   // variables are
   frame_pointer = frame_pointer - SIZE_OF_MAIN_STACK_FRAME;
@@ -119,16 +118,14 @@ loopBegin : {
   xmemcpy(/*dest*/ &this_char_in_register,
           /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_THIS_CHAR,
           /*numberOfBytes*/ SIZE_OF_INT32_T);
-  if (this_char_in_register == EOF)
-    goto loopEnd;
+  if (this_char_in_register == EOF) goto loopEnd;
 }
   {
     char this_char_in_register;
     xmemcpy(/*dest*/ &this_char_in_register,
             /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_THIS_CHAR,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
-    if (this_char_in_register != '.')
-      goto notAPeriod;
+    if (this_char_in_register != '.') goto notAPeriod;
   }
   {
     char stop_count_in_register;
@@ -148,8 +145,7 @@ notAPeriod : {
           /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_THIS_CHAR,
           /*numberOfBytes*/ SIZE_OF_INT32_T);
 
-  if (this_char_in_register != ',')
-    goto notAComma;
+  if (this_char_in_register != ',') goto notAComma;
 }
   {
     char comma_count_in_register;

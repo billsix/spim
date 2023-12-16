@@ -13,7 +13,7 @@
 
 // https://publications.gbdirect.co.uk//c_book/copyright.html
 
-// Copyright (c) 2021 William Emerison Six
+// Copyright (c) 2021-2023 William Emerison Six
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -49,10 +49,8 @@ int main(int argc, char *argv[]) {
   int32_t stop_count = 0;
   char this_char = read_char();
   while (this_char != EOF) {
-    if (this_char == '.')
-      stop_count = stop_count + 1;
-    if (this_char == ',')
-      comma_count = comma_count + 1;
+    if (this_char == '.') stop_count = stop_count + 1;
+    if (this_char == ',') comma_count = comma_count + 1;
     this_char = getchar();
   }
   print_int(comma_count);

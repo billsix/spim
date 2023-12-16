@@ -13,7 +13,7 @@
 
 // https://publications.gbdirect.co.uk//c_book/copyright.html
 
-// Copyright (c) 2021 William Emerison Six
+// Copyright (c) 2021-2023 William Emerison Six
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -52,7 +52,6 @@ struct main_stack_frame {
 };
 
 int main(int argc, char *argv[]) {
-
   struct main_stack_frame msf = {.comma_count = 0,
                                  .stop_count = 0,
                                  .this_char = 0,
@@ -62,14 +61,11 @@ int main(int argc, char *argv[]) {
   main_stack_frame->this_char = read_char();
 
 loopBegin:
-  if (main_stack_frame->this_char == EOF)
-    goto loopEnd;
-  if (main_stack_frame->this_char != '.')
-    goto notAPeriod;
+  if (main_stack_frame->this_char == EOF) goto loopEnd;
+  if (main_stack_frame->this_char != '.') goto notAPeriod;
   main_stack_frame->stop_count = main_stack_frame->stop_count + 1;
 notAPeriod:
-  if (main_stack_frame->this_char != ',')
-    goto notAComma;
+  if (main_stack_frame->this_char != ',') goto notAComma;
   main_stack_frame->comma_count = main_stack_frame->comma_count + 1;
 notAComma:
   main_stack_frame->this_char = read_char();

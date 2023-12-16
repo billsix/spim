@@ -1,4 +1,4 @@
-// Copyright (c) 2021 William Emerison Six
+// Copyright (c) 2021-2023 William Emerison Six
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -46,7 +46,6 @@ struct mxPlusB_stack_frame {
 };
 
 int main(int32_t argc, char *argv[]) {
-
   void *current_stack_frame;
 
   goto main_label;
@@ -66,7 +65,6 @@ mxPlusBLabel : {
   goto *returnAddress;
 }
 main_label : {
-
   struct main_stack_frame msf = {
       .result1 = 0,
       .result2 = 0,

@@ -13,7 +13,7 @@
 
 // https://publications.gbdirect.co.uk//c_book/copyright.html
 
-// Copyright (c) 2021 William Emerison Six
+// Copyright (c) 2021-2023 William Emerison Six
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -53,15 +53,14 @@ struct main_stack_frame{
 */
 
 #define MAIN_STACK_FRAME_OFFSET_TO_CH 0
-#define MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE                                \
-  (MAIN_STACK_FRAME_OFFSET_TO_CH +                                             \
-   SIZE_OF_INT32_T) // even though CH is a character, the subsequent
-                    // int needs to be aligned on a 32-bit boundary
-#define SIZE_OF_MAIN_STACK_FRAME                                               \
+#define MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE \
+  (MAIN_STACK_FRAME_OFFSET_TO_CH +              \
+   SIZE_OF_INT32_T)  // even though CH is a character, the subsequent
+                     // int needs to be aligned on a 32-bit boundary
+#define SIZE_OF_MAIN_STACK_FRAME \
   (MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE + SIZE_OF_INT32_T)
 
 int main(int argc, char *argv[]) {
-
   // the frame pointer is the current stack frame, aka, where the local
   // variables are
   frame_pointer = frame_pointer - SIZE_OF_MAIN_STACK_FRAME;
@@ -91,8 +90,7 @@ loopTest : {
   xmemcpy(/*dest*/ &ch_in_register,
           /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_CH,
           /*numberOfBytes*/ SIZE_OF_BYTE);
-  if (!(ch_in_register != 'a'))
-    goto loopEnd;
+  if (!(ch_in_register != 'a')) goto loopEnd;
 }
 loopBody : {
   // if (! (main_stack_frame.ch != '\n')) goto getNextChar;
@@ -100,8 +98,7 @@ loopBody : {
   xmemcpy(/*dest*/ &ch_in_register,
           /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_CH,
           /*numberOfBytes*/ SIZE_OF_BYTE);
-  if (!(ch_in_register != '\n'))
-    goto getNextChar;
+  if (!(ch_in_register != '\n')) goto getNextChar;
 }
   print_string("ch was ");
   {

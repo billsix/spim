@@ -13,7 +13,7 @@
 
 // https://publications.gbdirect.co.uk//c_book/copyright.html
 
-// Copyright (c) 2021 William Emerison Six
+// Copyright (c) 2021-2023 William Emerison Six
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -54,15 +54,14 @@ struct main_stack_frame {
 */
 
 #define MAIN_STACK_FRAME_OFFSET_TO_A 0
-#define MAIN_STACK_FRAME_OFFSET_TO_B                                           \
+#define MAIN_STACK_FRAME_OFFSET_TO_B \
   (MAIN_STACK_FRAME_OFFSET_TO_A + SIZE_OF_INT32_T)
-#define MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE                                \
+#define MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE \
   (MAIN_STACK_FRAME_OFFSET_TO_B + SIZE_OF_INT32_T)
-#define SIZE_OF_MAIN_STACK_FRAME                                               \
+#define SIZE_OF_MAIN_STACK_FRAME \
   (MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE + SIZE_OF_INT32_T)
 
 int main(int argc, char *argv[]) {
-
   // the frame pointer is the current stack frame, aka, where the local
   // variables are
   frame_pointer = frame_pointer - SIZE_OF_MAIN_STACK_FRAME;
@@ -96,7 +95,6 @@ int main(int argc, char *argv[]) {
 
   // get a, add 5, and print i
   {
-
     int32_t a_in_register;
     // get a
     xmemcpy(/*dest*/ &a_in_register,
@@ -138,7 +136,6 @@ int main(int argc, char *argv[]) {
 
   // get return value
   {
-
     int32_t return_value_in_register;
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE,
             /*src*/ &return_value_in_register,

@@ -13,7 +13,7 @@
 
 // https://publications.gbdirect.co.uk//c_book/copyright.html
 
-// Copyright (c) 2021 William Emerison Six
+// Copyright (c) 2021-2023 William Emerison Six
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -54,8 +54,7 @@ bool str_eq(const char *s1, const char *s2) {
     /*
      * At end of string return 0.
      */
-    if (*s1 == 0)
-      return false;
+    if (*s1 == 0) return false;
     s1++;
     s2++;
   }
@@ -64,11 +63,9 @@ bool str_eq(const char *s1, const char *s2) {
 }
 
 int main(int argc, char *argv[]) {
-
   char *str1 = "str1";
   char *str2 = "str2";
   char *str3 = "str1";
-
 
   print_string("str1 compared to str2 is ");
   print_int(str_eq(str1, str2));

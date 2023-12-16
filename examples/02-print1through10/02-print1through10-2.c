@@ -13,7 +13,7 @@
 
 // https://publications.gbdirect.co.uk//c_book/copyright.html
 
-// Copyright (c) 2021 William Emerison Six
+// Copyright (c) 2021-2023 William Emerison Six
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -48,13 +48,11 @@ struct main_stack_frame {
 };
 
 int main(int argc, char *argv[]) {
-
   struct main_stack_frame msf = {.i = 0, .return_value = EXIT_SUCCESS};
   struct main_stack_frame *main_stack_frame = &msf;
 
 beginningOfLoop:
-  if (!(main_stack_frame->i <= 10))
-    goto endOfLoop;
+  if (!(main_stack_frame->i <= 10)) goto endOfLoop;
 loopBody:
   print_int(main_stack_frame->i);
   print_string("\n");

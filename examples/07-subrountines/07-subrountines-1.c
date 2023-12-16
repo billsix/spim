@@ -1,4 +1,4 @@
-// Copyright (c) 2021 William Emerison Six
+// Copyright (c) 2021-2023 William Emerison Six
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,6 @@ int32_t mxPlusB(int32_t m, int32_t x, int32_t b) {
 }
 
 int main(int32_t argc, char *argv[]) {
-
   int32_t result1 = mxPlusB(1, 2, 3);
   print_int(result1);
   print_string("\n");
