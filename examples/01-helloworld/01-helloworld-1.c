@@ -25,7 +25,7 @@
 #include <inttypes.h>
 #include <stdlib.h>
 
-#include "platformabstraction.h"
+#include "operatingsystemfunctions.h"
 
 int main(int argc, char *argv[]) {
   print_string("hello world\n");

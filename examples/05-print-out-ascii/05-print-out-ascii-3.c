@@ -41,7 +41,7 @@
 #include <limits.h>
 #include <stdlib.h>
 
-#include "platformabstraction.h"
+#include "operatingsystemfunctions.h"
 
 /*
 

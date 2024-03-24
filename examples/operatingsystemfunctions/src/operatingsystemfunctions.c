@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "platformabstraction.h"
+#include "operatingsystemfunctions.h"
 
 // TODO, perhaps make versions of memcpy, so that I can put notes
 // in of what to do

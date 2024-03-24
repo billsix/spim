@@ -26,7 +26,7 @@
 #include <inttypes.h>
 #include <stdlib.h>
 
-#include "platformabstraction.h"
+#include "operatingsystemfunctions.h"
 
 int32_t mxPlusB(int32_t m, int32_t x, int32_t b) {
   int32_t result = m * x + b;

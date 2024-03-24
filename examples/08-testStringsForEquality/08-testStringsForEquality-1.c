@@ -42,7 +42,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "platformabstraction.h"
+#include "operatingsystemfunctions.h"
 
 /*
 * Compare

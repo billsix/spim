@@ -40,7 +40,7 @@
 #include <inttypes.h>
 #include <stdlib.h>
 
-#include "platformabstraction.h"
+#include "operatingsystemfunctions.h"
 
 /*struct main_stack_frame {
   int32_t i;

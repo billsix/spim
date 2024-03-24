@@ -43,7 +43,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "platformabstraction.h"
+#include "operatingsystemfunctions.h"
 
 /*
 struct main_stack_frame{

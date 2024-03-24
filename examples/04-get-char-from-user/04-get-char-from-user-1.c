@@ -42,7 +42,7 @@
 #include <inttypes.h>
 #include <stdlib.h>
 
-#include "platformabstraction.h"
+#include "operatingsystemfunctions.h"
 
 int main(int argc, char *argv[]) {
   char ch = read_char();
