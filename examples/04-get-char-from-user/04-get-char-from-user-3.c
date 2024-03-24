@@ -73,7 +73,7 @@ int main(int argc, char *argv[]) {
             /*numberOfBytes*/ SIZE_OF_BYTE);
     int32_t return_code_in_instruction = 0;
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE,
-            /*src*/ &return_code_in_register,
+            /*src*/ &return_code_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
 

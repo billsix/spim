@@ -186,7 +186,7 @@ current_stack_frame = (void *)main_stack_frame;
   }
   // set x
   {
-    int32_t x_in_insrtruction = 2;
+    int32_t x_in_instruction = 2;
     xmemcpy(/*dest*/ stack_pointer + MXPLUSB_STACK_FRAME_OFFSET_TO_X,
             /*src*/ &x_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
