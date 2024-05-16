@@ -1,14 +1,14 @@
 #ifndef __IOLIB_H
 #define __IOLIB_H
 
-char read_char();
-void print_char(char c);
+char operating_system_read_char();
+void operating_system_print_char(char c);
 
-void print_string(char* c);
-char* read_string();
+void operating_system_print_string(char* c);
+char* operating_system_read_string();
 
-void print_int(int32_t i);
-int32_t read_int();
+void operating_system_print_int(int32_t i);
+int32_t operating_system_read_int();
 
 void xmemcpy(void* dest, void* src, size_t n);
 

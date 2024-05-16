@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
 
-  print_string("hello world\n");
+  operating_system_print_string("hello world\n");
   //   return main_stack_frame.return_value;
   {
     int32_t return_value_in_register;

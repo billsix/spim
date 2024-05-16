@@ -21,7 +21,7 @@ ADDRESS_OF_BYTE frame_pointer =
 ADDRESS_OF_BYTE stack_pointer =
     (ADDRESS_OF_BYTE)(random_access_memory + RAM_SIZE);
 
-void print_string(char *c) {
+void operating_system_print_string(char *c) {
   /*
     For spim, in the data section at the top, give your string
     a name, and put the contents of the string in.
@@ -47,7 +47,7 @@ nl:    .asciiz     "\n"
   printf("%s", c);
 }
 
-char *read_string() {
+char *operating_system_read_string() {
   /*
     For spim, do
     ...
@@ -56,7 +56,7 @@ char *read_string() {
   return NULL;
 }
 
-char read_char() {
+char operating_system_read_char() {
   /*
     For spim,
 
@@ -81,8 +81,7 @@ char read_char() {
   return getchar();
 }
 
-void print_char(char c) {
-
+void operating_system_print_char(char c) {
   /*
     For spim, assuming that you char is in $t0
 
@@ -94,7 +93,7 @@ void print_char(char c) {
   printf("%c", c);
 }
 
-void print_int(int32_t i) {
+void operating_system_print_int(int32_t i) {
   /*
     For spim, assuming your int start 8 bytes away from the
     stack pointer
@@ -106,7 +105,7 @@ void print_int(int32_t i) {
   printf("%d", i);
 }
 
-int32_t read_int() {
+int32_t operating_system_read_int() {
   /*
     For spim, do
     ...
@@ -116,7 +115,7 @@ int32_t read_int() {
   return toRead;
 }
 
-void print_float(float f) {
+void operating_system_print_float(float f) {
   /*
     For spim, do
     ...
@@ -124,8 +123,7 @@ void print_float(float f) {
   printf("%f", f);
 }
 
-float read_float() {
-
+float operating_system_read_float() {
   /*
     For spim, do
     ...

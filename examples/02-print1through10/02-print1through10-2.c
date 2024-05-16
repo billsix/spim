@@ -54,8 +54,8 @@ int main(int argc, char *argv[]) {
 beginningOfLoop:
   if (!(main_stack_frame->i <= 10)) goto endOfLoop;
 loopBody:
-  print_int(main_stack_frame->i);
-  print_string("\n");
+  operating_system_print_int(main_stack_frame->i);
+  operating_system_print_string("\n");
   main_stack_frame->i = main_stack_frame->i + 1;
   goto beginningOfLoop;
 endOfLoop:

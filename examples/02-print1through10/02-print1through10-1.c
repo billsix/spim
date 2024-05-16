@@ -47,8 +47,8 @@ int main(int argc, char *argv[]) {
   int32_t i = 0;
   /* check */
   while (i <= 10) {
-    print_int(i);
-    print_string("\n");
+    operating_system_print_int(i);
+    operating_system_print_string("\n");
 
     /* update */
     i++;

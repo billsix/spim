@@ -45,16 +45,16 @@
 #include "operatingsystemfunctions.h"
 
 int main(int argc, char *argv[]) {
-  char ch = read_char();
+  char ch = operating_system_read_char();
   while (ch != 'a') {
     if (ch != '\n') {
-      print_string("ch was ");
-      print_char(ch);
-      print_string(", value ");
-      print_int(ch);
-      print_string("\n");
+      operating_system_print_string("ch was ");
+      operating_system_print_char(ch);
+      operating_system_print_string(", value ");
+      operating_system_print_int(ch);
+      operating_system_print_string("\n");
     }
-    ch = read_char();
+    ch = operating_system_read_char();
   }
   exit(EXIT_SUCCESS);
 }

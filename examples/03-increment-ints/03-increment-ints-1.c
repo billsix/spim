@@ -48,13 +48,13 @@
 int main(int argc, char *argv[]) {
   int32_t a, b;
   a = b = 5;
-  print_int(++a + 5);
-  print_string("\n");
-  print_int(a);
-  print_string("\n");
-  print_int(b++ + 5);
-  print_string("\n");
-  print_int(b);
-  print_string("\n");
+  operating_system_print_int(++a + 5);
+  operating_system_print_string("\n");
+  operating_system_print_int(a);
+  operating_system_print_string("\n");
+  operating_system_print_int(b++ + 5);
+  operating_system_print_string("\n");
+  operating_system_print_int(b);
+  operating_system_print_string("\n");
   exit(EXIT_SUCCESS);
 }

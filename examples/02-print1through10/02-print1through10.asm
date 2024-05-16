@@ -75,7 +75,7 @@ loopBody:
         #          /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_I,
         #          SIZE_OF_INT32_T);
         lw $t0, 0($fp)   # now stackframe i goes into register $t1
-        #  print_int(i_in_register);
+        #  operating_system_print_int(i_in_register);
         #}
 
         # print integer. $v0 must be one, int to print in $a0, syscall
@@ -84,7 +84,7 @@ loopBody:
         li $v0, 1
         syscall
 
-        #  print_string("\n");
+        #  operating_system_print_string("\n");
         li $v0, 4
         la $a0, nl
         syscall

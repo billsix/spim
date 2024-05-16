@@ -35,6 +35,6 @@ int main(int argc, char *argv[]) {
   struct main_stack_frame msf = {.return_value = EXIT_SUCCESS};
   struct main_stack_frame *main_stack_frame = &msf;
 
-  print_string("hello world\n");
+  operating_system_print_string("hello world\n");
   return main_stack_frame->return_value;
 }

@@ -45,12 +45,12 @@
 
 int main(int argc, char *argv[]) {
   char c = CHAR_MIN;
-  print_int(c);
-  print_string("\n");
+  operating_system_print_int(c);
+  operating_system_print_string("\n");
   do {
     c = c + 1;
-    print_int(c);
-    print_string("\n");
+    operating_system_print_int(c);
+    operating_system_print_string("\n");
   } while (c != CHAR_MAX);
 
   exit(EXIT_SUCCESS);

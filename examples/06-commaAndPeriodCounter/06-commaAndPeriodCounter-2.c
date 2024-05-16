@@ -58,7 +58,7 @@ int main(int argc, char *argv[]) {
                                  .return_code = EXIT_SUCCESS};
   struct main_stack_frame *main_stack_frame = &msf;
 
-  main_stack_frame->this_char = read_char();
+  main_stack_frame->this_char = operating_system_read_char();
 
 loopBegin:
   if (main_stack_frame->this_char == EOF) goto loopEnd;
@@ -68,14 +68,14 @@ notAPeriod:
   if (main_stack_frame->this_char != ',') goto notAComma;
   main_stack_frame->comma_count = main_stack_frame->comma_count + 1;
 notAComma:
-  main_stack_frame->this_char = read_char();
+  main_stack_frame->this_char = operating_system_read_char();
   goto loopBegin;
 
 loopEnd:
 
-  print_int(main_stack_frame->comma_count);
-  print_string(" commas, ");
-  print_int(main_stack_frame->stop_count);
-  print_string(" stops\n");
+  operating_system_print_int(main_stack_frame->comma_count);
+  operating_system_print_string(" commas, ");
+  operating_system_print_int(main_stack_frame->stop_count);
+  operating_system_print_string(" stops\n");
   return main_stack_frame->return_code;
 }

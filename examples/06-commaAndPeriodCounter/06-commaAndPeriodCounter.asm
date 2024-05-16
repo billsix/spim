@@ -133,7 +133,7 @@ main:
 
         #
         #  {
-        #    char readCharacter = read_char();
+        #    char readCharacter = operating_system_read_char();
         #    xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_THIS_CHAR,
         #            /*src*/ &readCharacter,
         #            /*numberOfBytes*/ SIZE_OF_INT32_T);
@@ -216,7 +216,7 @@ notAPeriod:
         #  }
 notAComma:
         #  {
-        #    char readCharacter = read_char();
+        #    char readCharacter = operating_system_read_char();
         #    xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_THIS_CHAR,
         #            /*src*/ &readCharacter,
         #            /*numberOfBytes*/ SIZE_OF_INT32_T);
@@ -240,13 +240,13 @@ loopEnd:
         lw $t0,  0($fp)
 
 
-        #    print_int(comma_count_in_register);
+        #    operating_system_print_int(comma_count_in_register);
         #  }
         move $a0, $t0
         li $v0, 1
         syscall
 
-        #  print_string(" commas, ");
+        #  operating_system_print_string(" commas, ");
 
         li $v0, 4
         la $a0, commasText
@@ -258,14 +258,14 @@ loopEnd:
         #            /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_STOP_COUNT,
         #            /*numberOfBytes*/ SIZE_OF_INT32_T);
         lw $t0, 4($fp)
-        #    print_int(stop_count_in_register);
+        #    operating_system_print_int(stop_count_in_register);
         move $a0, $t0
         li $v0, 1
         syscall
 
 
         #  }
-        #  print_string(" stops\n");
+        #  operating_system_print_string(" stops\n");
 
         li $v0, 4
         la $a0, stopsText

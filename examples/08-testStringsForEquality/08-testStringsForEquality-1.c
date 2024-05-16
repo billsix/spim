@@ -67,14 +67,14 @@ int main(int argc, char *argv[]) {
   char *str2 = "str2";
   char *str3 = "str1";
 
-  print_string("str1 compared to str2 is ");
-  print_int(str_eq(str1, str2));
-  print_string("\n");
-  print_string("str1 compared to str3 is ");
-  print_int(str_eq(str1, str3));
-  print_string("\n");
-  print_string("str2 compared to str3 is ");
-  print_int(str_eq(str2, str3));
-  print_string("\n");
+  operating_system_print_string("str1 compared to str2 is ");
+  operating_system_print_int(str_eq(str1, str2));
+  operating_system_print_string("\n");
+  operating_system_print_string("str1 compared to str3 is ");
+  operating_system_print_int(str_eq(str1, str3));
+  operating_system_print_string("\n");
+  operating_system_print_string("str2 compared to str3 is ");
+  operating_system_print_int(str_eq(str2, str3));
+  operating_system_print_string("\n");
   return 0;
 }

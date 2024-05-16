@@ -175,13 +175,13 @@ main:
         #
 
 
-        # print_int(c_in_register);
+        # operating_system_print_int(c_in_register);
 
         lw $a0, 0($fp)
         li $v0, 1
         syscall
 
-        #print_string("\n");
+        #operating_system_print_string("\n");
         li $v0, 4
         la $a0, nl
         syscall
@@ -209,13 +209,13 @@ loopBegin:
         #
         #
 
-        # print_int(c_in_register);
+        # operating_system_print_int(c_in_register);
 
         lw $a0, 0($fp)
         li $v0, 1
         syscall
 
-        #print_string("\n");
+        #operating_system_print_string("\n");
         li $v0, 4
         la $a0, nl
         syscall

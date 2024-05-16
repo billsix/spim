@@ -57,19 +57,19 @@ int main(int argc, char *argv[]) {
 
   // the first version of the C code uses preincement
   main_stack_frame->a++;
-  print_int(main_stack_frame->a + 5);
-  print_string("\n");
+  operating_system_print_int(main_stack_frame->a + 5);
+  operating_system_print_string("\n");
 
-  print_int(main_stack_frame->a);
-  print_string("\n");
+  operating_system_print_int(main_stack_frame->a);
+  operating_system_print_string("\n");
 
-  print_int(main_stack_frame->b + 5);
-  print_string("\n");
+  operating_system_print_int(main_stack_frame->b + 5);
+  operating_system_print_string("\n");
   // the first version of the C code uses postincrement
   main_stack_frame->b++;
 
-  print_int(main_stack_frame->b);
-  print_string("\n");
+  operating_system_print_int(main_stack_frame->b);
+  operating_system_print_string("\n");
 
   return main_stack_frame->return_value;
 }

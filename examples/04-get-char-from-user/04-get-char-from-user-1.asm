@@ -71,18 +71,18 @@ loopTest:
         la $t0, nl
         beq $v0, $t0, getNextChar
 
-        # print_string("ch was ");
+        # operating_system_print_string("ch was ");
         li $v0, 4
         la $a0, chWas
         syscall
 
-        #     print_char(ch_in_register);
+        #     operating_system_print_char(ch_in_register);
         move $a0, $v0
         li $v0, 1
         syscall
 
 
-        #   print_string(", value ");
+        #   operating_system_print_string(", value ");
         li $v0, 4
         la $a0, commaSpaceValue
         syscall
@@ -94,7 +94,7 @@ loopTest:
         j loopTest
 
 loopEnd:
-        #   print_string("\n");
+        #   operating_system_print_string("\n");
         li $v0, 4
         la $a0, nl
         syscall

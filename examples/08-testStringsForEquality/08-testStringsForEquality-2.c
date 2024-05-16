@@ -72,7 +72,7 @@ int main(int argc, char *argv[]) {
 
   goto main_label;
 
-str_eq_label : {
+str_eq_label: {
   struct str_eq_stack_frame current_str_eq_stack_frame =
       *((struct str_eq_stack_frame *)current_stack_frame);
 loopBegin:
@@ -91,7 +91,7 @@ incrementAndContinue:
 loopEnd:
 
   *current_str_eq_stack_frame.address_of_value_to_return = true;
-str_eq_exit : {
+str_eq_exit: {
   void *instruction_of_caller_to_execute_after_subrountine_terminates =
       current_str_eq_stack_frame
           .address_of_instruction_of_caller_to_execute_after_subrountine_terminates;
@@ -100,7 +100,7 @@ str_eq_exit : {
   goto *instruction_of_caller_to_execute_after_subrountine_terminates;
 }
 }
-main_label : {
+main_label: {
   struct main_stack_frame main_stack_frame = {
       .address_of_str1 = "str1",
       .address_of_str2 = "str2",
@@ -126,11 +126,11 @@ main_label : {
   current_stack_frame = (void *)&first_eq_call;
   goto str_eq_label;
 
-return_point_after_first_eq_call : {
-  print_string("str1 compared to str2 is ");
-  print_int(((struct main_stack_frame *)current_stack_frame)
-                ->result_of_evaluation_ofstr12_eq);
-  print_string("\n");
+return_point_after_first_eq_call: {
+  operating_system_print_string("str1 compared to str2 is ");
+  operating_system_print_int(((struct main_stack_frame *)current_stack_frame)
+                                 ->result_of_evaluation_ofstr12_eq);
+  operating_system_print_string("\n");
 
   struct str_eq_stack_frame second_eq_call = {
       .address_of_s1 = main_stack_frame.address_of_str1,
@@ -144,11 +144,11 @@ return_point_after_first_eq_call : {
   current_stack_frame = (void *)&second_eq_call;
   goto str_eq_label;
 }
-return_point_after_second_eq_call : {
-  print_string("str1 compared to str3 is ");
-  print_int(((struct main_stack_frame *)current_stack_frame)
-                ->result_of_evaluation_ofstr13_eq);
-  print_string("\n");
+return_point_after_second_eq_call: {
+  operating_system_print_string("str1 compared to str3 is ");
+  operating_system_print_int(((struct main_stack_frame *)current_stack_frame)
+                                 ->result_of_evaluation_ofstr13_eq);
+  operating_system_print_string("\n");
 
   struct str_eq_stack_frame third_eq_call = {
       .address_of_s1 = main_stack_frame.address_of_str2,
@@ -163,10 +163,10 @@ return_point_after_second_eq_call : {
   goto str_eq_label;
 }
 return_point_after_third_eq_call:
-  print_string("str2 compared to str3 is ");
-  print_int(((struct main_stack_frame *)current_stack_frame)
-                ->result_of_evaluation_ofstr23_eq);
-  print_string("\n");
+  operating_system_print_string("str2 compared to str3 is ");
+  operating_system_print_int(((struct main_stack_frame *)current_stack_frame)
+                                 ->result_of_evaluation_ofstr23_eq);
+  operating_system_print_string("\n");
 
 return_label:
   return main_stack_frame.return_value;

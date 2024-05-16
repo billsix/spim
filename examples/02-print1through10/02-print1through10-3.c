@@ -74,7 +74,7 @@ int main(int argc, char *argv[]) {
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
 
-beginningOfLoop : {
+beginningOfLoop: {
   /*
 if (!(main_stack_frame.i <= 10))
   goto endOfLoop;
@@ -85,15 +85,15 @@ if (!(main_stack_frame.i <= 10))
           SIZE_OF_INT32_T);
   if (!(i_in_register <= 10)) goto endOfLoop;
 }
-loopBody : {
-  //   print_int(main_stack_frame.i);
+loopBody: {
+  //   operating_system_print_int(main_stack_frame.i);
   int32_t i_in_register;
   xmemcpy(/*dest*/ &i_in_register,
           /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_I,
           SIZE_OF_INT32_T);
-  print_int(i_in_register);
+  operating_system_print_int(i_in_register);
 }
-  print_string("\n");
+  operating_system_print_string("\n");
   {
     //   main_stack_frame.i = main_stack_frame.i + 1;
     int32_t i_in_register;
@@ -106,7 +106,7 @@ loopBody : {
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
   goto beginningOfLoop;
-endOfLoop : {
+endOfLoop: {
   //   return main_stack_frame.return_value;
   int32_t return_value_in_register;
   xmemcpy(/*dest*/ &return_value_in_register,

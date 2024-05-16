@@ -77,7 +77,7 @@ struct mxPlusB_stack_frame {
 int main(int32_t argc, char *argv[]) {
   goto main_label;
 
-mxPlusBLabel : {
+mxPlusBLabel: {
   // get m, x, and b, and calculate
   int32_t result_in_register;
   {
@@ -127,7 +127,7 @@ mxPlusBLabel : {
     goto *returnAddress;
   }
 }
-main_label : {
+main_label: {
   /*
 struct main_stack_frame msf = {
     .result1 = 0,
@@ -234,9 +234,9 @@ continueMainPt1:
     xmemcpy(/*dest*/ &result1_in_register,
             /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_RESULT_1,
             /*numberOfBytes*/ SIZE_OF_ADDRESS_OF_BYTE);
-    print_int(result1_in_register);
+    operating_system_print_int(result1_in_register);
   }
-  print_string("\n");
+  operating_system_print_string("\n");
 
   /*   struct mxPlusB_stack_frame secondMxPlusBCall = { */
   /*       .m = 4, */
@@ -308,9 +308,9 @@ continueMainPt2:
     xmemcpy(/*dest*/ &result2_in_register,
             /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_RESULT_1,
             /*numberOfBytes*/ SIZE_OF_ADDRESS_OF_BYTE);
-    print_int(result2_in_register);
+    operating_system_print_int(result2_in_register);
   }
-  print_string("\n");
+  operating_system_print_string("\n");
 
   frame_pointer = frame_pointer + SIZE_OF_MAIN_STACK_FRAME;
 

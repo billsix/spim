@@ -82,15 +82,15 @@ int main(int argc, char *argv[]) {
   }
 
   {
-    // print_int(main_stack_frame.c);
+    // operating_system_print_int(main_stack_frame.c);
     char c_in_register;
     xmemcpy(/*dest*/ &c_in_register,
             /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_C,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
-    print_int(c_in_register);
-    print_string("\n");
+    operating_system_print_int(c_in_register);
+    operating_system_print_string("\n");
   }
-loopBegin : {
+loopBegin: {
   // main_stack_frame.c = main_stack_frame.c + 1;
   char c_in_register;
   xmemcpy(/*dest*/ &c_in_register,
@@ -101,8 +101,8 @@ loopBegin : {
   xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_C,
           /*src*/ &c_in_register,
           /*numberOfBytes*/ SIZE_OF_INT32_T);
-  print_int(c_in_register);
-  print_string("\n");
+  operating_system_print_int(c_in_register);
+  operating_system_print_string("\n");
 }
 
   {

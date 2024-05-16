@@ -53,19 +53,19 @@ int main(int argc, char *argv[]) {
   struct main_stack_frame msf = {.ch = 0, .return_code = 0};
   struct main_stack_frame *main_stack_frame = &msf;
 
-  main_stack_frame->ch = read_char();
+  main_stack_frame->ch = operating_system_read_char();
 loopTest:
   if (!(main_stack_frame->ch != 'a')) goto loopEnd;
 loopBody:
   if (!(main_stack_frame->ch != '\n')) goto getNextChar;
 
-  print_string("ch was ");
-  print_char(main_stack_frame->ch);
-  print_string(", value ");
-  print_int(main_stack_frame->ch);
-  print_string("\n");
+  operating_system_print_string("ch was ");
+  operating_system_print_char(main_stack_frame->ch);
+  operating_system_print_string(", value ");
+  operating_system_print_int(main_stack_frame->ch);
+  operating_system_print_string("\n");
 getNextChar:
-  main_stack_frame->ch = read_char();
+  main_stack_frame->ch = operating_system_read_char();
   goto loopTest;
 loopEnd:
   return main_stack_frame->return_code;

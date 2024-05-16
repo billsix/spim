@@ -50,7 +50,7 @@ int main(int32_t argc, char *argv[]) {
 
   goto main_label;
 
-mxPlusBLabel : {
+mxPlusBLabel: {
   struct mxPlusB_stack_frame current_mxplusb_stack_frame =
       *((struct mxPlusB_stack_frame *)current_stack_frame);
 
@@ -64,7 +64,7 @@ mxPlusBLabel : {
   current_stack_frame = current_mxplusb_stack_frame.stack_frame_of_caller;
   goto *returnAddress;
 }
-main_label : {
+main_label: {
   struct main_stack_frame msf = {
       .result1 = 0,
       .result2 = 0,
@@ -87,8 +87,8 @@ main_label : {
   goto mxPlusBLabel;
 continueMainPt1:
 
-  print_int(main_stack_frame->result1);
-  print_string("\n");
+  operating_system_print_int(main_stack_frame->result1);
+  operating_system_print_string("\n");
 
   struct mxPlusB_stack_frame secondMxPlusBCall = {
       .m = 4,
@@ -103,8 +103,8 @@ continueMainPt1:
   goto mxPlusBLabel;
 
 continueMainPt2:
-  print_int(main_stack_frame->result2);
-  print_string("\n");
+  operating_system_print_int(main_stack_frame->result2);
+  operating_system_print_string("\n");
 
   exit(EXIT_SUCCESS);
 }

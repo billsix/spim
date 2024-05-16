@@ -102,11 +102,11 @@ int main(int argc, char *argv[]) {
             /*numberOfBytes*/ SIZE_OF_INT32_T);
 
     int32_t a_plus_five_in_register = a_in_register + 5;
-    print_int(a_plus_five_in_register);
-    print_string("\n");
+    operating_system_print_int(a_plus_five_in_register);
+    operating_system_print_string("\n");
 
-    print_int(a_in_register);
-    print_string("\n");
+    operating_system_print_int(a_in_register);
+    operating_system_print_string("\n");
   }
 
   // print b + 5
@@ -116,8 +116,8 @@ int main(int argc, char *argv[]) {
             /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_B,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
     int b_plus_five_in_register = b_in_register + 5;
-    print_int(b_plus_five_in_register);
-    print_string("\n");
+    operating_system_print_int(b_plus_five_in_register);
+    operating_system_print_string("\n");
   }
 
   // increment b and print it
@@ -130,8 +130,8 @@ int main(int argc, char *argv[]) {
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_B,
             /*src*/ &b_in_register, /*numberOfBytes*/ SIZE_OF_INT32_T);
 
-    print_int(b_in_register);
-    print_string("\n");
+    operating_system_print_int(b_in_register);
+    operating_system_print_string("\n");
   }
 
   // get return value

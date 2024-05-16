@@ -78,13 +78,13 @@ int main(int argc, char *argv[]) {
   }
 
   {
-    // main_stack_frame.ch = read_char();
-    char ch_in_register = read_char();
+    // main_stack_frame.ch = operating_system_read_char();
+    char ch_in_register = operating_system_read_char();
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_CH,
             /*src*/ &ch_in_register,
             /*numberOfBytes*/ SIZE_OF_BYTE);
   }
-loopTest : {
+loopTest: {
   char ch_in_register;
   // if (! (main_stack_frame.ch != 'a')) goto loopEnd;
   xmemcpy(/*dest*/ &ch_in_register,
@@ -92,7 +92,7 @@ loopTest : {
           /*numberOfBytes*/ SIZE_OF_BYTE);
   if (!(ch_in_register != 'a')) goto loopEnd;
 }
-loopBody : {
+loopBody: {
   // if (! (main_stack_frame.ch != '\n')) goto getNextChar;
   char ch_in_register;
   xmemcpy(/*dest*/ &ch_in_register,
@@ -100,31 +100,31 @@ loopBody : {
           /*numberOfBytes*/ SIZE_OF_BYTE);
   if (!(ch_in_register != '\n')) goto getNextChar;
 }
-  print_string("ch was ");
+  operating_system_print_string("ch was ");
   {
     char ch_in_register;
     xmemcpy(/*dest*/ &ch_in_register,
             /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_CH,
             /*numberOfBytes*/ SIZE_OF_BYTE);
-    print_char(ch_in_register);
+    operating_system_print_char(ch_in_register);
   }
-  print_string(", value ");
+  operating_system_print_string(", value ");
   {
     char ch_in_register;
     xmemcpy(/*dest*/ &ch_in_register,
             /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_CH,
             /*numberOfBytes*/ SIZE_OF_BYTE);
-    print_int(ch_in_register);
+    operating_system_print_int(ch_in_register);
   }
-  print_string("\n");
-getNextChar : {
-  char ch_in_register = read_char();
+  operating_system_print_string("\n");
+getNextChar: {
+  char ch_in_register = operating_system_read_char();
   xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_CH,
           /*src*/ &ch_in_register,
           /*numberOfBytes*/ SIZE_OF_BYTE);
   goto loopTest;
 }
-loopEnd : {
+loopEnd: {
   int32_t return_code_in_register;
   xmemcpy(/*dest*/ &return_code_in_register,
           /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_RETURN_VALUE,

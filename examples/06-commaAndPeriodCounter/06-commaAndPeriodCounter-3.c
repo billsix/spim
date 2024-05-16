@@ -108,12 +108,12 @@ int main(int argc, char *argv[]) {
   }
 
   {
-    char readCharacter = read_char();
+    char readCharacter = operating_system_read_char();
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_THIS_CHAR,
             /*src*/ &readCharacter,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
-loopBegin : {
+loopBegin: {
   char this_char_in_register;
   xmemcpy(/*dest*/ &this_char_in_register,
           /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_THIS_CHAR,
@@ -139,7 +139,7 @@ loopBegin : {
             /*src*/ &stop_count_in_register,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
-notAPeriod : {
+notAPeriod: {
   char this_char_in_register;
   xmemcpy(/*dest*/ &this_char_in_register,
           /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_THIS_CHAR,
@@ -159,30 +159,30 @@ notAPeriod : {
             /*src*/ &comma_count_in_register,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
-notAComma : {
-  char readCharacter = read_char();
+notAComma: {
+  char readCharacter = operating_system_read_char();
   xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_THIS_CHAR,
           /*src*/ &readCharacter,
           /*numberOfBytes*/ SIZE_OF_INT32_T);
   goto loopBegin;
 }
 
-loopEnd : {
+loopEnd: {
   char comma_count_in_register;
   xmemcpy(/*dest*/ &comma_count_in_register,
           /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_COMMA_COUNT,
           /*numberOfBytes*/ SIZE_OF_INT32_T);
-  print_int(comma_count_in_register);
+  operating_system_print_int(comma_count_in_register);
 }
-  print_string(" commas, ");
+  operating_system_print_string(" commas, ");
   {
     char stop_count_in_register;
     xmemcpy(/*dest*/ &stop_count_in_register,
             /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_STOP_COUNT,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
-    print_int(stop_count_in_register);
+    operating_system_print_int(stop_count_in_register);
   }
-  print_string(" stops\n");
+  operating_system_print_string(" stops\n");
   {
     char return_code_in_register;
     xmemcpy(/*dest*/ &return_code_in_register,

@@ -35,10 +35,10 @@ int32_t mxPlusB(int32_t m, int32_t x, int32_t b) {
 
 int main(int32_t argc, char *argv[]) {
   int32_t result1 = mxPlusB(1, 2, 3);
-  print_int(result1);
-  print_string("\n");
+  operating_system_print_int(result1);
+  operating_system_print_string("\n");
   int32_t result2 = mxPlusB(4, 5, 6);
-  print_int(result2);
-  print_string("\n");
+  operating_system_print_int(result2);
+  operating_system_print_string("\n");
   exit(EXIT_SUCCESS);
 }

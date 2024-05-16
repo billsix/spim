@@ -28,6 +28,6 @@
 #include "operatingsystemfunctions.h"
 
 int main(int argc, char *argv[]) {
-  print_string("hello world\n");
+  operating_system_print_string("hello world\n");
   exit(EXIT_SUCCESS);
 }

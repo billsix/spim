@@ -163,8 +163,8 @@ main:
 
         #
         #  {
-        #    // main_stack_frame.ch = read_char();
-        #    char ch_in_register = read_char();
+        #    // main_stack_frame.ch = operating_system_read_char();
+        #    char ch_in_register = operating_system_read_char();
 
         # read char, which will end up in $v0, and store it in 0($fp)
         li $v0 12
@@ -223,7 +223,7 @@ loopBody:
         #}
         beq $t0, '\n', getNextChar
 
-        # print_string("ch was ");
+        # operating_system_print_string("ch was ");
         li $v0, 4
         la $a0, chWas
         syscall
@@ -234,14 +234,14 @@ loopBody:
         #            /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_CH,
         #            /*numberOfBytes*/ SIZE_OF_BYTE);
         lw $t0, 0($fp)
-        #    print_char(ch_in_register);
+        #    operating_system_print_char(ch_in_register);
         move $a0, $t0
         li $v0, 1
         syscall
         #  }
 
 
-        #   print_string(", value ");
+        #   operating_system_print_string(", value ");
         li $v0, 4
         la $a0, commaSpaceValue
         syscall
@@ -252,20 +252,20 @@ loopBody:
         #            /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_CH,
         #            /*numberOfBytes*/ SIZE_OF_BYTE);
         lw $t0, 0($fp)
-        #    print_int(ch_in_register);
+        #    operating_system_print_int(ch_in_register);
         li $v0, 11
         move $a0, $t0
         syscall
         #  }
 
-        #   print_string("\n");
+        #   operating_system_print_string("\n");
         li $v0, 4
         la $a0, nl
         syscall
 
         #getNextChar : {
 getNextChar:
-        #  char ch_in_register = read_char();
+        #  char ch_in_register = operating_system_read_char();
         # read char, which will end up in $v0
         li $v0 12
         syscall
