@@ -39,16 +39,16 @@ main:
         #                                                                     |
         #                                                                     |
         #                                                                     V
-        #             ---------------------------------------------------------------------
-        #  C-Variable |   |&comma_count|&stop_count|&this_char|&return_code|           |   |
-        #   ----      |---|------------|-----------|----------|------------|-----------|---|
-        # RAM Address |   |-16($sp)    | -12($sp)  |  -8($sp) |  -4($sp)   | 0($sp)    |   |
-        #   ----      |---|------------|-----------|----------|------------|-----------|---|
-        #             |   |            |           |          |            |           |   |
-        #             |   |            |           |          |            |           |   |
-        #   Value     |...|dontcare    |dontcare   |dontcare  |dontcare    | dontcare  |...|
-        #             |   |            |           |          |            |           |   |
-        #   ____      |___|____________|___________|__________|____________|___________|___|
+        #             -----------------------------------------------------------------------
+        #  C-Variable |   |&comma_count|&period_count|&this_char|&return_code|           |   |
+        #   ----      |---|------------|-------------|----------|------------|-----------|---|
+        # RAM Address |   |-16($sp)    | -12($sp)    |  -8($sp) |  -4($sp)   | 0($sp)    |   |
+        #   ----      |---|------------|-------------|----------|------------|-----------|---|
+        #             |   |            |             |          |            |           |   |
+        #             |   |            |             |          |            |           |   |
+        #   Value     |...|dontcare    |dontcare     |dontcare  |dontcare    | dontcare  |...|
+        #             |   |            |             |          |            |           |   |
+        #   ____      |___|____________|_____________|__________|____________|___________|___|
         #
 
 
@@ -58,16 +58,16 @@ main:
         #                                                                and current FP
         #                                                                     |
         #                                                                     V
-        #             ----------------------------------------------------------------------
-        #  C-Variable |   |&comma_count|&stop_count|&this_char|&return_code|           |   |
-        #   ----      |---|------------|-----------|----------|------------|-----------|---|
-        # RAM Address |   |-16($sp)    | -12($sp)  |  -8($sp) |  -4($sp)   | 0($sp)    |   |
-        #   ----      |---|------------|-----------|----------|------------|-----------|---|
-        #             |   |            |           |          |            |           |   |
-        #             |   |            |           |          |            |           |   |
-        #   Value     |...|dontcare    |dontcare   |dontcare  |dontcare    | dontcare  |...|
-        #             |   |            |           |          |            |           |   |
-        #   ____      |___|____________|___________|__________|____________|___________|___|
+        #             ------------------------------------------------------------------------
+        #  C-Variable |   |&comma_count|&period_count|&this_char|&return_code|           |   |
+        #   ----      |---|------------|-------------|----------|------------|-----------|---|
+        # RAM Address |   |-16($sp)    | -12($sp)    |  -8($sp) |  -4($sp)   | 0($sp)    |   |
+        #   ----      |---|------------|-------------|----------|------------|-----------|---|
+        #             |   |            |             |          |            |           |   |
+        #             |   |            |             |          |            |           |   |
+        #   Value     |...|dontcare    |dontcare     |dontcare  |dontcare    | dontcare  |...|
+        #             |   |            |             |          |            |           |   |
+        #   ____      |___|____________|_____________|__________|____________|___________|___|
 
 
 
@@ -81,16 +81,16 @@ main:
         #                       |                                              |
         #                       V                                              V
         #
-        #             ----------------------------------------------------------------------
-        #  C-Variable |   |&comma_count|&stop_count|&this_char|&return_code|           |   |
-        #   ----      |---|------------|-----------|----------|------------|-------------|---|
-        # RAM Address |   | 0($fp)     |  4($fp)   |   8($fp) |  16($fp)   | 0($sp)      |   |
-        #   ----      |---|------------|-----------|----------|------------|-------------|---|
-        #             |   |            |           |          |            |             |   |
-        #             |   |            |           |          |            |             |   |
-        #   Value     |...|dontcare    |dontcare   |dontcare  |dontcare    | dontcare    |...|
-        #             |   |            |           |          |            |             |   |
-        #   ____      |___|____________|___________|__________|____________|_____________|___|
+        #             ------------------------------------------------------------------------
+        #  C-Variable |   |&comma_count|&period_count|&this_char|&return_code|           |   |
+        #   ----      |---|------------|-------------|----------|------------|-------------|---|
+        # RAM Address |   | 0($fp)     |  4($fp)     |   8($fp) |  16($fp)   | 0($sp)      |   |
+        #   ----      |---|------------|-------------|----------|------------|-------------|---|
+        #             |   |            |             |          |            |             |   |
+        #             |   |            |             |          |            |             |   |
+        #   Value     |...|dontcare    |dontcare     |dontcare  |dontcare    | dontcare    |...|
+        #             |   |            |             |          |            |             |   |
+        #   ____      |___|____________|_____________|__________|____________|_____________|___|
 
 
         #  {
@@ -104,9 +104,9 @@ main:
         sw $t0, 0($fp)
 
         #  {
-        #    int32_t stop_count_in_register = 0;
+        #    int32_t period_count_in_register = 0;
         #    xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_STOP_COUNT,
-        #            /*src*/ &stop_count_in_register,
+        #            /*src*/ &period_count_in_register,
         #            /*numberOfBytes*/ SIZE_OF_INT32_T);
         #  }
         li $t0, 0
@@ -168,19 +168,19 @@ loopBegin:
 
 
         #  {
-        #    char stop_count_in_register;
-        #    xmemcpy(/*dest*/ &stop_count_in_register,
+        #    char period_count_in_register;
+        #    xmemcpy(/*dest*/ &period_count_in_register,
         #            /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_STOP_COUNT,
         #            /*numberOfBytes*/ SIZE_OF_INT32_T);
         lw $t0,  4($fp)
 
         #
-        #    stop_count_in_register = stop_count_in_register + 1;
+        #    period_count_in_register = period_count_in_register + 1;
         #
         add $t0, $t0, 1
 
         #    xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_STOP_COUNT,
-        #            /*src*/ &stop_count_in_register,
+        #            /*src*/ &period_count_in_register,
         #            /*numberOfBytes*/ SIZE_OF_INT32_T);
         sw $t0,  4($fp)
 
@@ -253,12 +253,12 @@ loopEnd:
         syscall
 
         #  {
-        #    char stop_count_in_register;
-        #    xmemcpy(/*dest*/ &stop_count_in_register,
+        #    char period_count_in_register;
+        #    xmemcpy(/*dest*/ &period_count_in_register,
         #            /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_STOP_COUNT,
         #            /*numberOfBytes*/ SIZE_OF_INT32_T);
         lw $t0, 4($fp)
-        #    operating_system_print_int(stop_count_in_register);
+        #    operating_system_print_int(period_count_in_register);
         move $a0, $t0
         li $v0, 1
         syscall

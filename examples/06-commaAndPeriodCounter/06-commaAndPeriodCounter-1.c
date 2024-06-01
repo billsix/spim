@@ -46,16 +46,16 @@
 
 int main(int argc, char *argv[]) {
   int32_t comma_count = 0;
-  int32_t stop_count = 0;
+  int32_t period_count = 0;
   char this_char = operating_system_read_char();
   while (this_char != EOF) {
-    if (this_char == '.') stop_count = stop_count + 1;
+    if (this_char == '.') period_count = period_count + 1;
     if (this_char == ',') comma_count = comma_count + 1;
     this_char = operating_system_read_char();
   }
   operating_system_print_int(comma_count);
   operating_system_print_string(" commas, ");
-  operating_system_print_int(stop_count);
+  operating_system_print_int(period_count);
   operating_system_print_string(" stops\n");
   exit(EXIT_SUCCESS);
 }

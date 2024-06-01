@@ -46,14 +46,14 @@
 
 struct main_stack_frame {
   int32_t comma_count;
-  int32_t stop_count;
+  int32_t period_count;
   char this_char;
   int32_t return_code;
 };
 
 int main(int argc, char *argv[]) {
   struct main_stack_frame msf = {.comma_count = 0,
-                                 .stop_count = 0,
+                                 .period_count = 0,
                                  .this_char = 0,
                                  .return_code = EXIT_SUCCESS};
   struct main_stack_frame *main_stack_frame = &msf;
@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
 loopBegin:
   if (main_stack_frame->this_char == EOF) goto loopEnd;
   if (main_stack_frame->this_char != '.') goto notAPeriod;
-  main_stack_frame->stop_count = main_stack_frame->stop_count + 1;
+  main_stack_frame->period_count = main_stack_frame->period_count + 1;
 notAPeriod:
   if (main_stack_frame->this_char != ',') goto notAComma;
   main_stack_frame->comma_count = main_stack_frame->comma_count + 1;
@@ -75,7 +75,7 @@ loopEnd:
 
   operating_system_print_int(main_stack_frame->comma_count);
   operating_system_print_string(" commas, ");
-  operating_system_print_int(main_stack_frame->stop_count);
+  operating_system_print_int(main_stack_frame->period_count);
   operating_system_print_string(" stops\n");
   return main_stack_frame->return_code;
 }

@@ -47,7 +47,7 @@
 /*
 struct main_stack_frame {
   int32_t comma_count;
-  int32_t stop_count;
+  int32_t period_count;
   char this_char;
   int32_t return_code;
 };
@@ -72,7 +72,7 @@ int main(int argc, char *argv[]) {
   struct main_stack_frame main_stack_frame =
     {
       .comma_count = 0,
-      .stop_count = 0,
+      .period_count = 0,
       .this_char = 0,
       .return_code = EXIT_SUCCESS
     };
@@ -87,9 +87,9 @@ int main(int argc, char *argv[]) {
   }
   // set stop count
   {
-    int32_t stop_count_in_instruction = 0;
+    int32_t period_count_in_instruction = 0;
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_STOP_COUNT,
-            /*src*/ &stop_count_in_instruction,
+            /*src*/ &period_count_in_instruction,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
   // set this_char
@@ -128,15 +128,15 @@ loopBegin: {
     if (this_char_in_register != '.') goto notAPeriod;
   }
   {
-    char stop_count_in_register;
-    xmemcpy(/*dest*/ &stop_count_in_register,
+    char period_count_in_register;
+    xmemcpy(/*dest*/ &period_count_in_register,
             /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_STOP_COUNT,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
 
-    stop_count_in_register = stop_count_in_register + 1;
+    period_count_in_register = period_count_in_register + 1;
 
     xmemcpy(/*dest*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_STOP_COUNT,
-            /*src*/ &stop_count_in_register,
+            /*src*/ &period_count_in_register,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
   }
 notAPeriod: {
@@ -176,11 +176,11 @@ loopEnd: {
 }
   operating_system_print_string(" commas, ");
   {
-    char stop_count_in_register;
-    xmemcpy(/*dest*/ &stop_count_in_register,
+    char period_count_in_register;
+    xmemcpy(/*dest*/ &period_count_in_register,
             /*src*/ frame_pointer + MAIN_STACK_FRAME_OFFSET_TO_STOP_COUNT,
             /*numberOfBytes*/ SIZE_OF_INT32_T);
-    operating_system_print_int(stop_count_in_register);
+    operating_system_print_int(period_count_in_register);
   }
   operating_system_print_string(" stops\n");
   {
