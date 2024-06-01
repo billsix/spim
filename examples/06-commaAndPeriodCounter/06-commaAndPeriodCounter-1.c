@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
   while (this_char != EOF) {
     if (this_char == '.') stop_count = stop_count + 1;
     if (this_char == ',') comma_count = comma_count + 1;
-    this_char = getchar();
+    this_char = operating_system_read_char();
   }
   operating_system_print_int(comma_count);
   operating_system_print_string(" commas, ");

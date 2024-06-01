@@ -42,6 +42,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <operatingsystemfunctions.h>
+
 #define MAXSTRING 50 /* max no. of strings */
 #define MAXLEN 80    /* max length. of strings */
 
@@ -71,8 +73,10 @@ int main(int argc, char *argv[]) {
 }
 
 void print_arr(const char *p_array[]) {
-  for (size_t index = 0; p_array[index] != 0; index++)
-    printf("%s\n", p_array[index]);
+  for (size_t index = 0; p_array[index] != 0; index++) {
+    operating_system_print_string(p_array[index]);
+    operating_system_print_string("\n");
+  }
 }
 
 void sort_arr(const char *p_array[]) {
@@ -92,7 +96,7 @@ void sort_arr(const char *p_array[]) {
 char *next_string(char *destination) {
   char *cp = destination;
   char c;
-  while ((c = getchar()) != '\n' && c != EOF) {
+  while ((c = operating_system_read_char()) != '\n' && c != EOF) {
     if (cp - destination < MAXLEN - 1) *cp++ = c;
   }
   *cp = 0;

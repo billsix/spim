@@ -43,6 +43,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "operatingsystemfunctions.h"
+
 int main(int argc, char *argv[]) {
   void pmax(int32_t first, int32_t second); /*declaration*/
 
@@ -62,6 +64,11 @@ void pmax(int32_t a1, int32_t a2) { /*definition*/
   } else {
     biggest = a2;
   }
-
-  printf("largest of %d and %d is %d\n", a1, a2, biggest);
+  operating_system_print_string("largest of ");
+  operating_system_print_int(a1);
+  operating_system_print_string(" and ");
+  operating_system_print_int(a2);
+  operating_system_print_string(" is ");
+  operating_system_print_int(biggest);
+  operating_system_print_string("\n");
 }
