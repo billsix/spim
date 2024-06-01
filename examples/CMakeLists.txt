@@ -129,17 +129,3 @@ add_executable(08-testStringsForEquality-2 08-testStringsForEquality/08-testStri
 set_property(TARGET 08-testStringsForEquality-2 PROPERTY C_STANDARD 11)
 TARGET_LINK_LIBRARIES( 08-testStringsForEquality-2 operatingsystemfunctions )
 install(TARGETS 08-testStringsForEquality-2 DESTINATION bin)
-
-
-
-add_executable(10-nestedLoopProcedureCall-1 10-nestedLoopProcedureCall/10-nestedLoopProcedureCall-1.c)
-set_property(TARGET 10-nestedLoopProcedureCall-1 PROPERTY C_STANDARD 11)
-TARGET_LINK_LIBRARIES( 10-nestedLoopProcedureCall-1 operatingsystemfunctions )
-install(TARGETS 10-nestedLoopProcedureCall-1 DESTINATION bin)
-
-
-
-add_executable(11-sortStrings-1 11-sortStrings/11-sortStrings-1.c)
-set_property(TARGET 11-sortStrings-1 PROPERTY C_STANDARD 11)
-TARGET_LINK_LIBRARIES( 11-sortStrings-1 operatingsystemfunctions )
-install(TARGETS 11-sortStrings-1 DESTINATION bin)

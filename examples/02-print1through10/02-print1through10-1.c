@@ -1,18 +1,3 @@
-// Permission is hereby granted for anyone to do anything that they
-// want with this material—you may freely reprint it, redistribute it,
-// amend it or do whatever you like with it provided that
-// you include an acknowledgement of the original authorship and copyright in
-// the form of a link to this page. In doing so
-// you must accept that you do so strictly on your own
-// liability and that you accept any consequences with no liability whatsoever
-// remaining with the original authors. If you find the material useful
-// and happen to encounter one of the authors, it is unlikely
-// that they will refuse offers to buy them a drink. You
-// may therefore like to consider this material ‘drinkware’. (Offer void where
-// prohibited by law, in which case fawning and flattery may be substituted.)
-
-// https://publications.gbdirect.co.uk//c_book/copyright.html
-
 // Copyright (c) 2021-2023 William Emerison Six
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
